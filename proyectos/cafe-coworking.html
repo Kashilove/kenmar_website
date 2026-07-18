@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caso de Estudio: Café & Coworking Quesada | Kenmar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* Estilos específicos para la página de caso de estudio */
+        .case-header {
+            padding: 40px 0;
+            border-bottom: 1px solid var(--border-color);
+            background: var(--bg-secondary);
+        }
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+        .btn-back:hover {
+            color: var(--accent);
+        }
+        .case-title-area h1 {
+            font-size: 40px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+        }
+        .case-meta {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 16px;
+        }
+        .meta-tag {
+            background-color: var(--bg-alt);
+            padding: 4px 12px;
+            border-radius: var(--radius-sm);
+            font-size: 13px;
+            font-weight: 500;
+        }
+        .meta-tag.highlight {
+            background-color: var(--accent-light);
+            color: var(--accent);
+        }
+        
+        .case-content {
+            padding: 80px 0;
+        }
+        .case-intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+        .case-intro-grid h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+        .case-intro-grid p {
+            font-size: 16px;
+            margin-bottom: 20px;
+            color: var(--text-secondary);
+        }
+        
+        /* Estilos de la Demostración Interactiva */
+        .demo-section {
+            background-color: var(--bg-alt);
+            border-radius: var(--radius-lg);
+            padding: 60px 40px;
+            margin-top: 60px;
+            border: 1px solid var(--border-color);
+        }
+        .demo-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .demo-header h3 {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+        
+        /* Simulación del Sitio del Cliente */
+        .client-mock-container {
+            background: #111;
+            border: 1px solid #222;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+            font-family: var(--font-body);
+        }
+        .client-mock-bar {
+            background: #18181b;
+            padding: 12px 20px;
+            border-bottom: 1px solid #27272a;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .client-mock-address {
+            background: #09090b;
+            padding: 4px 16px;
+            border-radius: 4px;
+            font-size: 12px;
+            color: #71717a;
+            border: 1px solid #27272a;
+            width: 50%;
+            text-align: center;
+        }
+        .client-mock-dots {
+            display: flex;
+            gap: 6px;
+        }
+        .client-mock-dots span {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #3f3f46;
+        }
+        
+        /* Estilos de la simulación de Cafetería (Estilo Dark elegante) */
+        .cafe-site {
+            background: #09090b;
+            color: #e4e4e7;
+            padding: 35px 28px;
+        }
+        .cafe-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #27272a;
+            padding-bottom: 16px;
+            margin-bottom: 30px;
+        }
+        .cafe-logo {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            color: #d97706; /* Ambar */
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 18px;
+        }
+        .cafe-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 30px;
+            align-items: start;
+        }
+        
+        /* Menú Dinámico */
+        .cafe-menu-box h4 {
+            font-size: 18px;
+            margin-bottom: 14px;
+            color: #f4f4f5;
+        }
+        .cafe-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        .cafe-tab {
+            padding: 6px 14px;
+            border-radius: var(--radius-sm);
+            font-size: 12px;
+            font-weight: 600;
+            background: #18181b;
+            border: 1px solid #27272a;
+            color: #a1a1aa;
+            cursor: pointer;
+            transition: var(--transition-fast);
+        }
+        .cafe-tab.active {
+            background: #d97706;
+            color: #fff;
+            border-color: #d97706;
+        }
+        .cafe-tab:hover:not(.active) {
+            background: #27272a;
+            color: #f4f4f5;
+        }
+        .cafe-menu-items {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .cafe-menu-item {
+            background: #18181b;
+            border: 1px solid #27272a;
+            border-radius: var(--radius-sm);
+            padding: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition-fast);
+        }
+        .cafe-menu-item:hover {
+            border-color: #3f3f46;
+        }
+        .cafe-item-info h5 {
+            font-size: 14px;
+            color: #f4f4f5;
+            margin-bottom: 2px;
+        }
+        .cafe-item-info p {
+            font-size: 12px;
+            color: #a1a1aa;
+        }
+        .cafe-item-price {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            color: #f59e0b;
+            font-size: 14px;
+        }
+        
+        /* Reserva de Coworking */
+        .cafe-cowork-box {
+            background: #18181b;
+            border: 1px solid #27272a;
+            border-radius: var(--radius-sm);
+            padding: 24px;
+            box-shadow: var(--shadow-sm);
+        }
+        .cafe-cowork-box h4 {
+            font-size: 18px;
+            margin-bottom: 6px;
+            color: #f4f4f5;
+        }
+        .cafe-cowork-box p {
+            font-size: 12px;
+            color: #a1a1aa;
+            margin-bottom: 20px;
+        }
+        
+        /* Grid de Estaciones de Trabajo */
+        .workspace-map {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .workspace-seat {
+            aspect-ratio: 1;
+            background: #27272a;
+            border: 1px solid #3f3f46;
+            border-radius: 6px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: 600;
+            color: #a1a1aa;
+            cursor: pointer;
+            transition: var(--transition-fast);
+        }
+        .workspace-seat.taken {
+            background: #7f1d1d;
+            border-color: #991b1b;
+            color: #fca5a5;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+        .workspace-seat.selected {
+            background: #d97706;
+            border-color: #f59e0b;
+            color: #fff;
+        }
+        .workspace-seat:hover:not(.taken):not(.selected) {
+            background: #3f3f46;
+            color: #f4f4f5;
+        }
+        .workspace-seat-icon {
+            font-size: 16px;
+            margin-bottom: 2px;
+        }
+        
+        .cafe-book-btn {
+            background: #d97706;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            width: 100%;
+            transition: var(--transition-fast);
+        }
+        .cafe-book-btn:hover:not(:disabled) {
+            background: #b45309;
+        }
+        .cafe-book-btn:disabled {
+            background: #27272a;
+            color: #52525b;
+            cursor: not-allowed;
+        }
+        
+        .cafe-success-toast {
+            background: #064e3b;
+            border: 1px solid #047857;
+            color: #a7f3d0;
+            padding: 12px;
+            border-radius: 4px;
+            text-align: center;
+            font-size: 12px;
+            margin-top: 14px;
+            font-weight: 500;
+        }
+        
+        @media (max-width: 991px) {
+            .cafe-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        @media (max-width: 768px) {
+            .case-intro-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .demo-section {
+                padding: 30px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header simple de caso de estudio -->
+    <header class="case-header">
+        <div class="container">
+            <a href="../index.html" class="btn-back">&larr; Volver a Kenmar</a>
+            <div class="case-title-area">
+                <h1>Caso de Estudio: Café & Coworking Quesada</h1>
+                <p class="hero-description">Plataforma digital integrada con menú gourmet interactivo y reserva de puestos de trabajo.</p>
+                <div class="case-meta">
+                    <span class="meta-tag highlight">Diseño de Experiencias</span>
+                    <span class="meta-tag">Menú Autogestionable</span>
+                    <span class="meta-tag">Reserva de Escritorios</span>
+                    <span class="meta-tag">Modo Oscuro Premium</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="case-content">
+        <div class="container">
+            <div class="case-intro-grid">
+                <div>
+                    <h2>El Reto del Proyecto</h2>
+                    <p>El sector de cafeterías de especialidad y coworking en San Carlos no solo vende café o escritorios; vende una experiencia de vida, productividad y comunidad. El reto principal era crear una página web que presentara la esencia del espacio, mostrando qué son y qué hacen, sin dar la impresión de ser una tienda virtual o comercio transaccional en línea.</p>
+                    <p>El cliente requería un sitio web que funcionara como carta de presentación para profesionales independientes, estudiantes y turistas de paso, atrayéndolos a visitar el local físico.</p>
+                </div>
+                <div>
+                    <h2>Nuestra Solución</h2>
+                    <p>Desarrollamos un sitio web con enfoque institucional y de posicionamiento de marca, en modo oscuro elegante. En lugar de un sistema de reservas de pago o un menú de compras con precios, diseñamos un catálogo visual de especialidades y un mapa interactivo de distribución física del coworking.</p>
+                    <p>Los usuarios pueden explorar visualmente las características de cada área (puestos individuales, mesas de equipo o cabinas de reuniones) y conocer la filosofía del local, invitándoles a formar parte de la comunidad en Ciudad Quesada.</p>
+                </div>
+            </div>
+
+            <!-- Demostración Interactiva -->
+            <div class="demo-section">
+                <div class="demo-header">
+                    <h3>Explora la Experiencia de Marca</h3>
+                    <p>Interactúa con las pestañas de especialidades (sin enfoque de venta) y haz clic en los puestos de coworking en el mapa para conocer cómo está equipado el espacio.</p>
+                </div>
+
+                <div class="client-mock-container">
+                    <div class="client-mock-bar">
+                        <div class="client-mock-dots">
+                            <span></span><span></span><span></span>
+                        </div>
+                        <div class="client-mock-address">cafeandcoworking-quesada.com</div>
+                        <div style="width:24px;"></div>
+                    </div>
+                    <div class="cafe-site">
+                        <div class="cafe-nav">
+                            <div class="cafe-logo">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8zM6 1v3M10 1v3M14 1v3"/></svg>
+                                Café & Coworking
+                            </div>
+                            <span style="font-size:12px; color:#a1a1aa; font-weight:500;">Ciudad Quesada, Costa Rica</span>
+                        </div>
+
+                        <div class="cafe-grid">
+                            <!-- Columna Menú / Especialidades -->
+                            <div class="cafe-menu-box">
+                                <h4>Nuestra Esencia y Especialidades</h4>
+                                <div class="cafe-tabs">
+                                    <button class="cafe-tab active" data-cat="cafe">Café de Especialidad</button>
+                                    <button class="cafe-tab" data-cat="panaderia">Panadería & Sándwiches</button>
+                                    <button class="cafe-tab" data-cat="pizza">Pizza & Cocina</button>
+                                </div>
+                                <div class="cafe-menu-items" id="cafe-menu-items">
+                                    <!-- Categoria Cafe -->
+                                    <div class="cafe-menu-item cafe-cat-item" data-cat="cafe" style="padding:0; overflow:hidden; border:none; background:transparent;">
+                                        <img src="assets/cafe_latte.jpg" alt="Café de Especialidad" style="width:100%; height:150px; object-fit:cover; border-radius:var(--radius-sm); border:1px solid #27272a;">
+                                    </div>
+                                    <div class="cafe-menu-item cafe-cat-item" data-cat="cafe">
+                                        <div class="cafe-item-info">
+                                            <h5>Barismo de Altura</h5>
+                                            <p>Café de especialidad de productores locales de San Carlos, extraído con precisión por baristas profesionales.</p>
+                                        </div>
+                                    </div>
+                                    <div class="cafe-menu-item cafe-cat-item" data-cat="cafe">
+                                        <div class="cafe-item-info">
+                                            <h5>Cold Brew Tonic</h5>
+                                            <p>Extracción en frío lenta de 18 horas para un café suave y refrescante, servido con agua tónica premium y cítricos.</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Categoria Panaderia -->
+                                    <div class="cafe-menu-item cafe-cat-item" data-cat="panaderia" style="display:none; padding:0; overflow:hidden; border:none; background:transparent;">
+                                        <img src="assets/sandwich.jpg" alt="Panadería y Sándwiches" style="width:100%; height:150px; object-fit:cover; border-radius:var(--radius-sm); border:1px solid #27272a;">
+                                    </div>
+                                    <div class="cafe-menu-item cafe-cat-item" data-cat="panaderia" style="display:none;">
+                                        <div class="cafe-item-info">
+                                            <h5>Sándwich Gourmet de Masa Madre</h5>
+                                            <p>Pan de masa madre tostado, relleno de jamón serrano curado, queso mozzarella fresco, aguacate, rúcula y un toque de aderezo pesto casero.</p>
+                                        </div>
+                                    </div>
+                                    <div class="cafe-menu-item cafe-cat-item" data-cat="panaderia" style="display:none;">
+                                        <div class="cafe-item-info">
+                                            <h5>Pan de Masa Madre</h5>
+                                            <p>Elaborado diariamente con procesos tradicionales y fermentación lenta de 24 horas, sin aditivos artificiales.</p>
+                                        </div>
+                                    </div>
+                                    <div class="cafe-menu-item cafe-cat-item" data-cat="panaderia" style="display:none;">
+                                        <div class="cafe-item-info">
+                                            <h5>Croissants & Repostería</h5>
+                                            <p>Hojaldrado clásico francés relleno de almendras tostadas y chocolate de origen nacional.</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Categoria Pizza -->
+                                    <div class="cafe-menu-item cafe-cat-item" data-cat="pizza" style="display:none;">
+                                        <div class="cafe-item-info">
+                                            <h5>Pizza Margherita Napolitana</h5>
+                                            <p>Salsa de tomates maduros cocinada lentamente, queso mozzarella fresco de fincas locales y albahaca orgánica.</p>
+                                        </div>
+                                    </div>
+                                    <div class="cafe-menu-item cafe-cat-item" data-cat="pizza" style="display:none;">
+                                        <div class="cafe-item-info">
+                                            <h5>Pizza Serrano & Rúcula</h5>
+                                            <p>Base crujiente con finas rebanadas de jamón serrano, rúcula fresca y un hilo de aceite de oliva trufado.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Columna Coworking / Mapa del Espacio -->
+                            <div class="cafe-cowork-box">
+                                <h4>Explora el Espacio de Trabajo</h4>
+                                <p>Haz clic en cualquier área del mapa interactivo para ver los detalles de equipamiento y atmósfera.</p>
+                                
+                                <div class="workspace-map" style="margin-bottom: 16px;">
+                                    <div class="workspace-seat" data-id="Puesto 1" data-desc="Escritorio ergonómico individual con tomacorriente dedicado, puerto USB y luz focalizada en una zona de alta concentración.">
+                                        <span class="workspace-seat-icon">💻</span>
+                                        <span>Puesto 1</span>
+                                    </div>
+                                    <div class="workspace-seat" data-id="Puesto 2" data-desc="Estación individual con vista al jardín interno, ideal para lectura, diseño o tareas de concentración moderada con luz natural.">
+                                        <span class="workspace-seat-icon">💻</span>
+                                        <span>Puesto 2</span>
+                                    </div>
+                                    <div class="workspace-seat" data-id="Puesto 3" data-desc="Escritorio individual estándar con silla ergonómica ajustable y conectividad de red por cable directo de alta velocidad (Giga-lan).">
+                                        <span class="workspace-seat-icon">💻</span>
+                                        <span>Puesto 3</span>
+                                    </div>
+                                    <div class="workspace-seat" data-id="Puesto 4" data-desc="Estación de trabajo ergonómica individual. Acceso directo a conexiones eléctricas y cerca de la barra de barismo.">
+                                        <span class="workspace-seat-icon">💻</span>
+                                        <span>Puesto 4</span>
+                                    </div>
+                                    <div class="workspace-seat" data-id="Mesa A" data-desc="Amplia mesa compartida para equipos de 4 a 6 personas. Equipada con pizarra acrílica móvil y tomas eléctricas centrales.">
+                                        <span class="workspace-seat-icon">👥</span>
+                                        <span>Mesa A</span>
+                                    </div>
+                                    <div class="workspace-seat" data-id="Mesa B" data-desc="Mesa colaborativa central. Diseñada para reuniones de trabajo ágiles, lluvias de ideas o integraciones de equipos locales.">
+                                        <span class="workspace-seat-icon">👥</span>
+                                        <span>Mesa B</span>
+                                    </div>
+                                    <div class="workspace-seat" data-id="Booth 1" data-desc="Cabina acústica privada e insonorizada. Perfecta para videollamadas, grabaciones de voz o llamadas telefónicas confidenciales.">
+                                        <span class="workspace-seat-icon">🎙️</span>
+                                        <span>Booth 1</span>
+                                    </div>
+                                    <div class="workspace-seat" data-id="Booth 2" data-desc="Cabina insonorizada individual equipada con ventilación dedicada y soporte ajustable para webcam o micrófono.">
+                                        <span class="workspace-seat-icon">🎙️</span>
+                                        <span>Booth 2</span>
+                                    </div>
+                                </div>
+
+                                <div id="workspace-details-box" style="background:#18181b; border:1px solid #27272a; border-radius:6px; padding:15px; font-size:13px; line-height:1.5; color:#a1a1aa; min-height:80px; display:flex; align-items:center; justify-content:center; text-align:center; transition: var(--transition-fast); margin-bottom: 16px;">
+                                    Haz clic en un área del mapa para ver los detalles del equipamiento.
+                                </div>
+
+                                <img src="assets/coworking.jpg" alt="Instalaciones del Coworking" style="width:100%; height:130px; object-fit:cover; border-radius:var(--radius-sm); border:1px solid #27272a;">
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer simple -->
+    <footer class="main-footer" style="padding-top:40px;">
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2026 Kenmar. Todos los derechos reservados. Diseño y desarrollo minimalista.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Lógica interactiva de las pestañas del menú
+        const tabs = document.querySelectorAll('.cafe-tab');
+        const menuItems = document.querySelectorAll('.cafe-cat-item');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+
+                const cat = tab.getAttribute('data-cat');
+                menuItems.forEach(item => {
+                    if (item.getAttribute('data-cat') === cat) {
+                        item.style.display = 'flex';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Lógica interactiva de detalles de las estaciones de coworking
+        const seats = document.querySelectorAll('.workspace-seat');
+        const detailsBox = document.getElementById('workspace-details-box');
+
+        seats.forEach(seat => {
+            seat.addEventListener('click', () => {
+                const isSelected = seat.classList.contains('selected');
+                
+                seats.forEach(s => s.classList.remove('selected'));
+                
+                if (isSelected) {
+                    detailsBox.style.color = '#a1a1aa';
+                    detailsBox.style.borderColor = '#27272a';
+                    detailsBox.innerHTML = 'Haz clic en un área del mapa para ver los detalles del equipamiento.';
+                } else {
+                    seat.classList.add('selected');
+                    const seatId = seat.getAttribute('data-id');
+                    const seatDesc = seat.getAttribute('data-desc');
+                    
+                    detailsBox.style.color = '#f4f4f5';
+                    detailsBox.style.borderColor = '#d97706';
+                    detailsBox.innerHTML = `
+                        <div style="text-align:left; width:100%;">
+                            <strong style="color:#f59e0b; display:block; margin-bottom:4px; font-size:14px; font-family:var(--font-heading);">${seatId}</strong>
+                            ${seatDesc}
+                        </div>
+                    `;
+                }
+            });
+        });
+    </script>
+</body>
+</html>

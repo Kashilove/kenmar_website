@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Diseño y desarrollo de páginas web a medida para los sectores clave en Costa Rica: retail, ganadería, agricultura, turismo, cafeterías y coworking. Impulsa tu PyME con Kenmar.">
+    <title>Kenmar | Portafolio Interactivo por Sectores</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Hojas de Estilo -->
+    <link rel="stylesheet" href="styles.css"> <!-- Importamos estilos base de Kenmar -->
+    <link rel="stylesheet" href="sectores.css"> <!-- Estilos específicos y oscuros para sectores -->
+</head>
+<body class="dark-theme">
+
+    <!-- Header / Navegación Oscura -->
+    <header class="main-header" id="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <span class="logo-dot"></span>Kenmar<span class="logo-badge">Sectores</span>
+            </a>
+            
+            <!-- Menú de sectores industriales para especialización inmediata -->
+            <nav class="nav-menu" id="nav-menu">
+                <ul class="nav-list">
+                    <li><button class="nav-sector-btn active" data-sector="retail">Ropa & Zapatería / Retail</button></li>
+                    <li><button class="nav-sector-btn" data-sector="agro">Agroinsumos / Sector Agrícola</button></li>
+                    <li><button class="nav-sector-btn" data-sector="cafe">Café & Coworking</button></li>
+                    <li><button class="nav-sector-btn" data-sector="turismo">Turismo & Aventura</button></li>
+                    <li><a href="index.html" class="nav-link return-btn">Volver a Kenmar</a></li>
+                </ul>
+            </nav>
+            
+            <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú">
+                <span class="burger-bar"></span>
+                <span class="burger-bar"></span>
+                <span class="burger-bar"></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Sección Hero del Portafolio Interactivo -->
+        <section class="showcase-hero">
+            <div class="container">
+                <div class="showcase-header text-center">
+                    <span class="section-subtitle">Portafolio Interactivo</span>
+                    <h1 class="main-title">Sitios Web a la Medida para Sectores en Todo el País</h1>
+                    <p class="main-desc">Explora maquetas interactivas funcionales y descubre el impacto de un diseño premium y de alto rendimiento para tu empresa en Costa Rica.</p>
+                </div>
+
+                <!-- Showcase Split View (Info Panel + Mockup Visualizer) -->
+                <div class="showcase-grid">
+                    
+                    <!-- Columna Izquierda: Información Dinámica del Sector -->
+                    <div class="info-column">
+                        
+                        <!-- Panel Ropa & Zapatería / Retail -->
+                        <div class="sector-info-panel active" id="info-retail">
+                            <div class="sector-badge font-heading">Ropa, Calzado & Retail</div>
+                            <h2>Catálogos de Moda, Ropa y Calzado</h2>
+                            <p class="sector-description">Diseño ágil y comercial adaptado tanto para boutiques de ropa como para zapaterías. Exhibe tus colecciones, prendas, calzado y accesorios con filtros por categorías y consultas directas a WhatsApp.</p>
+                            
+                            <ul class="feature-list">
+                                <li>
+                                    <div>
+                                        <strong>Catálogo Mixto (Ropa & Calzado):</strong> Exhibición de prendas y calzado con selectores de talla y color interactivos.
+                                    </div>
+                                </li>
+                                <li>
+                                    <span class="feature-icon">💬</span>
+                                    <div>
+                                        <strong>Consulta Directa de Stock:</strong> Botones rápidos que envían una plantilla estructurada del artículo directamente por WhatsApp.
+                                    </div>
+                                </li>
+                                <li>
+                                    <span class="feature-icon">⚡</span>
+                                    <div>
+                                        <strong>Filtros Dinámicos de Colección:</strong> Clasificaciones veloces para que el cliente alterne entre prendas y calzado al instante.
+                                    </div>
+                                </li>
+                            </ul>
+
+                            <div class="sector-ctas">
+                                <a href="https://wa.me/50686737455?text=Hola%20Kenmar,%20me%20gustar%C3%ADa%20cotizar%20un%20dise%C3%B1o%20web%20similar%20al%20de%20Ropa%20%26%20Zapater%C3%ADa" target="_blank" rel="noopener noreferrer" class="btn btn-accent btn-whatsapp-sector">
+                                    Cotizar diseño similar
+                                </a>
+                                <a href="#contacto-form" class="btn btn-secondary-dark">Enviar Consulta</a>
+                            </div>
+                        </div>
+
+                        <!-- Panel Agroinsumos / Agrícola -->
+                        <div class="sector-info-panel" id="info-agro">
+                            <div class="sector-badge font-heading agro">Agropecuaria & Ganadería</div>
+                            <h2>Sitios Web Corporativos y Catálogos de Insumos</h2>
+                            <p class="sector-description">Páginas web corporativas robustas diseñadas especialmente para distribuidoras de agroinsumos, veterinarias, fincas y ganaderías. Proyecta solidez técnica con fichas técnicas descargables e inventarios clasificados por categorías.</p>
+                            
+                            <ul class="feature-list">
+                                <li>
+                                    <div>
+                                        <strong>Buscador y Filtro de Productos:</strong> Filtra fertilizantes, semillas o maquinaria de forma instantánea.
+                                    </div>
+                                </li>
+                                <li>
+                                    <span class="feature-icon">📄</span>
+                                    <div>
+                                        <strong>Fichas Técnicas Integradas:</strong> Acceso rápido a especificaciones de productos y hojas de seguridad.
+                                    </div>
+                                </li>
+                                <li>
+                                    <span class="feature-icon">🐮</span>
+                                    <div>
+                                        <strong>Módulo Corporativo:</strong> Secciones dedicadas a servicios agrícolas, cobertura de entrega y asesoría técnica.
+                                    </div>
+                                </li>
+                            </ul>
+
+                            <div class="sector-ctas">
+                                <a href="https://wa.me/50686737455?text=Hola%20Kenmar,%20me%20gustar%C3%ADa%20cotizar%20un%20dise%C3%B1o%20web%20similar%20al%20de%20Agroinsumos%20/%20Sector%20Agr%C3%ADcola" target="_blank" rel="noopener noreferrer" class="btn btn-accent btn-whatsapp-sector">
+                                    Cotizar diseño similar
+                                </a>
+                                <a href="#contacto-form" class="btn btn-secondary-dark">Enviar Consulta</a>
+                            </div>
+                        </div>
+
+                        <!-- Panel Café & Coworking -->
+                        <div class="sector-info-panel" id="info-cafe">
+                            <div class="sector-badge font-heading cafe">Aesthetic & Experiencia</div>
+                            <h2>Páginas para Cafeterías y Espacios Coworking</h2>
+                            <p class="sector-description">Diseño moderno, cálido y aesthetic ideal para cafeterías de especialidad y locales gastronómicos. Muestra la atmósfera acogedora de tus instalaciones (vibe visual) y presenta una carta digital interactiva para atraer clientes locales y nómadas digitales.</p>
+                            
+                            <ul class="feature-list">
+                                <li>
+                                    <div>
+                                        <strong>Galería Aesthetic de Espacios:</strong> Muestra los rincones de tu local (terrazas, salones de enfoque, rincones relax) con un diseño visual premium.
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        <strong>Menú Digital de Especialidad:</strong> Carta interactiva optimizada para móviles con tus bebidas, repostería y planes de trabajo.
+                                    </div>
+                                </li>
+                                <li>
+                                    <span class="feature-icon">💬</span>
+                                    <div>
+                                        <strong>Cotización Directa de Combos:</strong> Permite a las personas consultar precios o cotizar eventos especiales y paquetes de coworking por WhatsApp en un clic.
+                                    </div>
+                                </li>
+                            </ul>
+
+                            <div class="sector-ctas">
+                                <a href="https://wa.me/50686737455?text=Hola%20Kenmar,%20me%20gustar%C3%ADa%20cotizar%20un%20dise%C3%B1o%20web%20similar%20al%20de%20Caf%C3%A9%20%26%20Coworking" target="_blank" rel="noopener noreferrer" class="btn btn-accent btn-whatsapp-sector">
+                                    Cotizar diseño similar
+                                </a>
+                                <a href="#contacto-form" class="btn btn-secondary-dark">Enviar Consulta</a>
+                            </div>
+                        </div>
+
+                        <!-- Panel Turismo & Aventura -->
+                        <div class="sector-info-panel" id="info-turismo">
+                            <div class="sector-badge font-heading turismo">Turismo & Naturaleza</div>
+                            <h2>Páginas de Destinos, Tours e Itinerarios Visuales</h2>
+                            <p class="sector-description">Sitios web de alto impacto visual diseñados para agencias de tours, hoteles boutique y operadores de aventura. Muestra la belleza de los destinos mediante galerías de gran escala y cronogramas interactivos.</p>
+                            
+                            <ul class="feature-list">
+                                <li>
+                                    <div>
+                                        <strong>Ficha Detallada de Tours:</strong> Clasificaciones por nivel de dificultad, duración y precios con divisas.
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        <strong>Itinerarios Desplegables:</strong> Información cronológica animada para guiar al viajero en su reserva.
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        <strong>Llamados a la Acción Claros:</strong> Formularios integrados para reservar cupos rápido desde teléfonos móviles.
+                                    </div>
+                                </li>
+                            </ul>
+
+                            <div class="sector-ctas">
+                                <a href="https://wa.me/50686737455?text=Hola%20Kenmar,%20me%20gustar%C3%ADa%20cotizar%20un%20dise%C3%B1o%20web%20similar%20al%20de%20Turismo%20%26%20Aventura" target="_blank" rel="noopener noreferrer" class="btn btn-accent btn-whatsapp-sector">
+                                    Cotizar diseño similar
+                                </a>
+                                <a href="#contacto-form" class="btn btn-secondary-dark">Enviar Consulta</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Columna Derecha: El Navegador Web Simulado (Mockup Interactivo) -->
+                    <div class="mockup-column">
+                        <div class="browser-mockup shadow-lg">
+                            <div class="browser-bar">
+                                <div class="browser-dots">
+                                    <span class="dot-red"></span>
+                                    <span class="dot-yellow"></span>
+                                    <span class="dot-green"></span>
+                                </div>
+                                <div class="browser-url-container">
+                                    <span class="lock-icon">🔒</span>
+                                    <div class="browser-url" id="mockup-url">ropaycalzadosancarlos.com</div>
+                                </div>
+                                <div class="browser-reload">🔄</div>
+                            </div>
+                            
+                            <!-- Contenedor Interno de las Páginas Simuladas -->
+                            <div class="browser-content" id="browser-content-viewport">
+                                
+                                <!-- MOCKUP 1: MODA & RETAIL (Tema Claro Minimalista Comercial) -->
+                                <div class="mockup-view active" id="mockup-view-retail">
+                                    <!-- Header de la Tienda -->
+                                    <div class="shop-header">
+                                        <div class="shop-logo">VÍA MODA<span>Ropa & Calzado</span></div>
+                                        <div class="shop-nav-links">
+                                            <span>Prendas</span>
+                                            <span>Calzado</span>
+                                            <span>Colecciones</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Banner Principal -->
+                                    <div class="shop-banner">
+                                        <div class="banner-text">
+                                            <span class="banner-tag">Moda & Calzado Local</span>
+                                            <h3>Colección de Temporada</h3>
+                                            <p>Prendas y calzado adaptados al clima de la Zona Norte.</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Filtros -->
+                                    <div class="shop-filters">
+                                        <button class="shop-filter-btn active" data-filter="all">Ver Todo</button>
+                                        <button class="shop-filter-btn" data-filter="clothing">Prendas</button>
+                                        <button class="shop-filter-btn" data-filter="shoes">Calzado</button>
+                                    </div>
+
+                                    <!-- Grid de Productos -->
+                                    <div class="shop-product-grid">
+                                        
+                                        <!-- Producto 1 (Prenda de Vestir) -->
+                                        <div class="shop-card" data-category="clothing" data-product-id="1">
+                                            <div class="product-visual p-jacket">
+                                                <div class="product-badge green">Nueva Colección</div>
+                                                <!-- Chaqueta dibujada en SVG -->
+                                                <svg viewBox="0 0 100 100" class="clothing-svg">
+                                                    <!-- Collar / Cuello -->
+                                                    <path d="M40 22 L50 32 L60 22 L50 17 Z" fill="#1e3a8a" class="clothing-color-path-collar" opacity="0.95"/>
+                                                    <!-- Cuerpo de la chaqueta -->
+                                                    <path d="M30 32 L70 32 L75 75 L25 75 Z" fill="#1e3a8a" class="clothing-color-path"/>
+                                                    <!-- Manga izquierda -->
+                                                    <path d="M30 32 L15 55 L22 60 L32 42 Z" fill="#1e3a8a" class="clothing-color-path" opacity="0.9"/>
+                                                    <!-- Manga derecha -->
+                                                    <path d="M70 32 L85 55 L78 60 L68 42 Z" fill="#1e3a8a" class="clothing-color-path" opacity="0.9"/>
+                                                    <!-- Cremallera central / detalles -->
+                                                    <line x1="50" y1="32" x2="50" y2="75" stroke="#ffffff" stroke-width="1.5" opacity="0.8"/>
+                                                    <!-- Bolsillo izquierdo -->
+                                                    <path d="M34 52 L42 52 L42 58 L34 58 Z" fill="#ffffff" opacity="0.15"/>
+                                                    <!-- Bolsillo derecho -->
+                                                    <path d="M58 52 L66 52 L66 58 L58 58 Z" fill="#ffffff" opacity="0.15"/>
+                                                </svg>
+                                            </div>
+                                            <div class="product-info">
+                                                <h4>Chaqueta Cortavientos Arenal</h4>
+                                                <p class="product-price">₡28,500</p>
+                                                <div class="product-options">
+                                                    <!-- Selectores de color de ropa -->
+                                                    <div class="color-selectors">
+                                                        <span class="color-dot active" data-color="#1e3a8a" style="background-color: #1e3a8a;"></span>
+                                                        <span class="color-dot" data-color="#1c1917" style="background-color: #1c1917;"></span>
+                                                        <span class="color-dot" data-color="#3f6212" style="background-color: #3f6212;"></span>
+                                                    </div>
+                                                    <!-- Selector de talla de ropa -->
+                                                    <select class="size-select">
+                                                        <option>Talla S</option>
+                                                        <option selected>Talla M</option>
+                                                        <option>Talla L</option>
+                                                        <option>Talla XL</option>
+                                                    </select>
+                                                </div>
+                                                <div class="product-actions">
+                                                    <a href="#" target="_blank" rel="noopener noreferrer" class="btn-product-wa" data-item="Chaqueta Cortavientos Arenal">WhatsApp 💬</a>
+                                                    <button class="btn-product-form" data-item="Chaqueta Cortavientos Arenal">Formulario ✉️</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Producto 2 (Calzado) -->
+                                        <div class="shop-card" data-category="shoes" data-product-id="2">
+                                            <div class="product-visual p-boot">
+                                                <div class="product-badge">Top Ventas</div>
+                                                <!-- Calzado dibujado en SVG -->
+                                                <svg viewBox="0 0 100 100" class="shoe-svg">
+                                                    <path d="M15 70 L30 55 L35 40 L50 35 L65 42 L80 60 L85 75 L15 75 Z" fill="#5c4033" class="shoe-color-path"/>
+                                                    <path d="M15 75 L85 75 L85 80 L15 80 Z" fill="#3e2723"/>
+                                                    <line x1="45" y1="40" x2="52" y2="55" stroke="#ffffff" stroke-width="2"/>
+                                                    <line x1="40" y1="45" x2="47" y2="60" stroke="#ffffff" stroke-width="2"/>
+                                                </svg>
+                                            </div>
+                                            <div class="product-info">
+                                                <h4>Botas de Montaña Teruel</h4>
+                                                <p class="product-price">₡48,500</p>
+                                                <div class="product-options">
+                                                    <div class="color-selectors">
+                                                        <span class="color-dot active" data-color="#5c4033" style="background-color: #5c4033;"></span>
+                                                        <span class="color-dot" data-color="#1c1917" style="background-color: #1c1917;"></span>
+                                                        <span class="color-dot" data-color="#a0522d" style="background-color: #a0522d;"></span>
+                                                    </div>
+                                                    <select class="size-select">
+                                                        <option>Talla 39</option>
+                                                        <option selected>Talla 40</option>
+                                                        <option>Talla 41</option>
+                                                        <option>Talla 42</option>
+                                                    </select>
+                                                </div>
+                                                <div class="product-actions">
+                                                    <a href="#" target="_blank" rel="noopener noreferrer" class="btn-product-wa" data-item="Botas de Montaña Teruel">WhatsApp 💬</a>
+                                                    <button class="btn-product-form" data-item="Botas de Montaña Teruel">Formulario ✉️</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- MOCKUP 2: AGROINSUMOS / INDUSTRIAL (Tema Verde/Tierra Corporativo Robusto) -->
+                                <div class="mockup-view" id="mockup-view-agro">
+                                    <!-- Header Agrícola -->
+                                    <div class="agro-header">
+                                        <div class="agro-logo">🚜 Agro<span>SanCarlos</span></div>
+                                        <div class="agro-search">
+                                            <span class="search-icon">🔍</span>
+                                            <input type="text" id="agro-search-input" placeholder="Buscar fertilizantes, herbicidas...">
+                                        </div>
+                                    </div>
+
+                                    <!-- Panel de Categorías rápidas -->
+                                    <div class="agro-nav">
+                                        <button class="agro-cat-btn active" data-category="all">Todos los Insumos</button>
+                                        <button class="agro-cat-btn" data-category="nutricion">Nutrición y Abonos</button>
+                                        <button class="agro-cat-btn" data-category="proteccion">Protección de Cultivo</button>
+                                        <button class="agro-cat-btn" data-category="herramientas">Herramientas</button>
+                                    </div>
+
+                                    <!-- Grid de Insumos Agropecuarios -->
+                                    <div class="agro-product-grid" id="agro-grid">
+                                        <!-- Producto Agro 1 -->
+                                        <div class="agro-card" data-category="nutricion" data-name="fertilizante nitromax desarrollo organico">
+                                            <div class="agro-tag green">Abono Orgánico</div>
+                                            <div class="agro-card-icon">🍃</div>
+                                            <h4>NitroMax Desarrollo</h4>
+                                            <p class="agro-spec">Saco de 50 kg | Nitrógeno de liberación lenta</p>
+                                            <p class="agro-status">🟢 En Stock (Sucursal Quesada)</p>
+                                            <div class="agro-card-footer">
+                                                <span class="agro-price">₡22,800</span>
+                                                <a href="#contacto-form" class="agro-btn-quote" data-item="NitroMax Desarrollo 50kg">Cotizar Lote</a>
+                                            </div>
+                                        </div>
+
+                                        <!-- Producto Agro 2 -->
+                                        <div class="agro-card" data-category="proteccion" data-name="herbicida bio-limpio control malezas">
+                                            <div class="agro-tag orange">Protección</div>
+                                            <div class="agro-card-icon">🧪</div>
+                                            <h4>Bio-Limpio Herbicida</h4>
+                                            <p class="agro-spec">Envase 4 Litros | Control de maleza de hoja ancha</p>
+                                            <p class="agro-status">🟢 En Stock (Sucursal Florencia)</p>
+                                            <div class="agro-card-footer">
+                                                <span class="agro-price">₡18,500</span>
+                                                <a href="#contacto-form" class="agro-btn-quote" data-item="Bio-Limpio Herbicida 4L">Cotizar Lote</a>
+                                            </div>
+                                        </div>
+
+                                        <!-- Producto Agro 3 -->
+                                        <div class="agro-card" data-category="herramientas" data-name="tijera podar bypass acero templado">
+                                            <div class="agro-tag brown">Herramientas</div>
+                                            <div class="agro-card-icon">✂️</div>
+                                            <h4>Tijera de Podar Pro</h4>
+                                            <p class="agro-spec">Acero templado Bypass | Mango ergonómico</p>
+                                            <p class="agro-status">🟡 Pocas Unidades</p>
+                                            <div class="agro-card-footer">
+                                                <span class="agro-price">₡14,900</span>
+                                                <a href="#contacto-form" class="agro-btn-quote" data-item="Tijera de Podar Pro">Cotizar Lote</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- MOCKUP 3: CAFÉ & COWORKING (Estilo Moderno, Cálido, Galería de Ambientes y Carta Digital) -->
+                                <div class="mockup-view" id="mockup-view-cafe">
+                                    <!-- Header Café -->
+                                    <div class="cafe-header">
+                                        <div class="cafe-logo">☕ KAFË<span>& Coworking</span></div>
+                                        <div class="cafe-tabs">
+                                            <button class="cafe-tab-btn active" data-cafe-tab="espacio">El Espacio</button>
+                                            <button class="cafe-tab-btn" data-cafe-tab="menu">Nuestro Menú</button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Sub-Vista 1: Galería Aesthetic del Espacio -->
+                                    <div class="cafe-subview active" id="cafe-subview-espacio">
+                                        <div class="cafe-gallery-hero">
+                                            <h4>Nuestros Ambientes</h4>
+                                            <p>Espacios diseñados al detalle con luz natural, plantas y excelente café para inspirar tu jornada de trabajo o relax.</p>
+                                        </div>
+                                        
+                                        <div class="cafe-gallery-grid">
+                                            <!-- Tarjeta Spot 1 -->
+                                            <div class="cafe-spot-card">
+                                                <div class="spot-visual spot-terraza">
+                                                    <span class="spot-emoji">🌋</span>
+                                                    <div class="spot-gradient"></div>
+                                                </div>
+                                                <div class="spot-info">
+                                                    <h5>La Terraza del Volcán</h5>
+                                                    <p>Espacio abierto con vistas al Volcán Arenal, ideal para ideas frescas y aire puro.</p>
+                                                    <div class="spot-amenities">
+                                                        <span>📶 Fibra 200MB</span>
+                                                        <span>🔌 Carga USB</span>
+                                                        <span>🌳 Aire Libre</span>
+                                                    </div>
+                                                    <div class="spot-actions">
+                                                        <a href="#" target="_blank" rel="noopener noreferrer" class="btn-spot-wa" data-spot="La Terraza del Volcán">Consultar por WhatsApp 💬</a>
+                                                        <button class="btn-spot-form" data-spot="La Terraza del Volcán">Por Formulario ✉️</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Tarjeta Spot 2 -->
+                                            <div class="cafe-spot-card">
+                                                <div class="spot-visual spot-salon">
+                                                    <span class="spot-emoji">🛋️</span>
+                                                    <div class="spot-gradient"></div>
+                                                </div>
+                                                <div class="spot-info">
+                                                    <h5>El Salón de Especialidad</h5>
+                                                    <p>Ambiente climatizado con música jazz suave y sillones de cuero ergonómicos.</p>
+                                                    <div class="spot-amenities">
+                                                        <span>🤫 Silencioso</span>
+                                                        <span>🛋️ Ergonomía</span>
+                                                        <span>☕ Refill Ilimitado</span>
+                                                    </div>
+                                                    <div class="spot-actions">
+                                                        <a href="#" target="_blank" rel="noopener noreferrer" class="btn-spot-wa" data-spot="El Salón de Especialidad">Consultar por WhatsApp 💬</a>
+                                                        <button class="btn-spot-form" data-spot="El Salón de Especialidad">Por Formulario ✉️</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Tarjeta Spot 3 -->
+                                            <div class="cafe-spot-card">
+                                                <div class="spot-visual spot-rincon">
+                                                    <span class="spot-emoji">💡</span>
+                                                    <div class="spot-gradient"></div>
+                                                </div>
+                                                <div class="spot-info">
+                                                    <h5>El Rincón Creativo</h5>
+                                                    <p>Esquina acogedora con pufs de lectura, iluminación cálida y tomas dedicadas.</p>
+                                                    <div class="spot-amenities">
+                                                        <span>💡 Luz Enfoque</span>
+                                                        <span>🎒 Pufs Relax</span>
+                                                        <span>🔌 Conectores</span>
+                                                    </div>
+                                                    <div class="spot-actions">
+                                                        <a href="#" target="_blank" rel="noopener noreferrer" class="btn-spot-wa" data-spot="El Rincón Creativo">Consultar por WhatsApp 💬</a>
+                                                        <button class="btn-spot-form" data-spot="El Rincón Creativo">Por Formulario ✉️</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Sub-Vista 2: Menú Digital Interactivo -->
+                                    <div class="cafe-subview" id="cafe-subview-menu">
+                                        <div class="cafe-menu-header">
+                                            <h4>Carta Digital de Especialidades</h4>
+                                            <p>Café de origen local preparado por baristas, brunch fresco de temporada y paquetes coworking integrados.</p>
+                                        </div>
+
+                                        <div class="cafe-menu-grid">
+                                            <!-- Categoría 1: Cafés -->
+                                            <div class="cafe-menu-category">
+                                                <h5>☕ Cafés de Especialidad</h5>
+                                                <div class="menu-items-list">
+                                                    <div class="menu-item-card" data-menu-item="Espresso de Origen" data-menu-price="₡1,800">
+                                                        <div class="item-header">
+                                                            <h6>Espresso de Origen</h6>
+                                                            <span class="item-price">₡1,800</span>
+                                                        </div>
+                                                        <p>Grano cosechado en altura, notas de caramelo y chocolate.</p>
+                                                        <div class="item-actions">
+                                                            <a href="#" class="btn-menu-wa" data-item="Espresso de Origen">WhatsApp 💬</a>
+                                                            <button class="btn-menu-form" data-item="Espresso de Origen">Formulario ✉️</button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="menu-item-card" data-menu-item="Iced Flat White" data-menu-price="₡2,500">
+                                                        <div class="item-header">
+                                                            <h6>Iced Flat White</h6>
+                                                            <span class="item-price">₡2,500</span>
+                                                        </div>
+                                                        <p>Doble shot de espresso vertido sobre leche fría y hielo.</p>
+                                                        <div class="item-actions">
+                                                            <a href="#" class="btn-menu-wa" data-item="Iced Flat White">WhatsApp 💬</a>
+                                                            <button class="btn-menu-form" data-item="Iced Flat White">Formulario ✉️</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Categoría 2: Brunch -->
+                                            <div class="cafe-menu-category">
+                                                <h5>🥑 Brunch & Snacks</h5>
+                                                <div class="menu-items-list">
+                                                    <div class="menu-item-card" data-menu-item="Avocado Toast Sancarleño" data-menu-price="₡3,800">
+                                                        <div class="item-header">
+                                                            <h6>Avocado Toast Sancarleño</h6>
+                                                            <span class="item-price">₡3,800</span>
+                                                        </div>
+                                                        <p>Pan de masa madre local, aguacate sazonado y queso tierno de la zona.</p>
+                                                        <div class="item-actions">
+                                                            <a href="#" class="btn-menu-wa" data-item="Avocado Toast Sancarleño">WhatsApp 💬</a>
+                                                            <button class="btn-menu-form" data-item="Avocado Toast Sancarleño">Formulario ✉️</button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="menu-item-card" data-menu-item="Panini Caprese Rústico" data-menu-price="₡4,200">
+                                                        <div class="item-header">
+                                                            <h6>Panini Caprese Rústico</h6>
+                                                            <span class="item-price">₡4,200</span>
+                                                        </div>
+                                                        <p>Tomates frescos, mozzarella artesanal y pesto de albahaca casero.</p>
+                                                        <div class="item-actions">
+                                                            <a href="#" class="btn-menu-wa" data-item="Panini Caprese Rústico">WhatsApp 💬</a>
+                                                            <button class="btn-menu-form" data-item="Panini Caprese Rústico">Formulario ✉️</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Categoría 3: Combos -->
+                                            <div class="cafe-menu-category full-width">
+                                                <h5>💻 Planes Remotos (Co-work Combos)</h5>
+                                                <div class="menu-items-list combos-list">
+                                                    <div class="menu-item-card combo-card" data-menu-item="Combo Workday Completo" data-menu-price="₡7,500">
+                                                        <div class="item-header">
+                                                            <h6>Combo Workday Completo</h6>
+                                                            <span class="item-price">₡7,500</span>
+                                                        </div>
+                                                        <p>Pase diario a cualquiera de nuestros espacios + Café de filtro ilimitado + Avocado Toast o Panini de la carta.</p>
+                                                        <div class="item-actions">
+                                                            <a href="#" class="btn-menu-wa" data-item="Combo Workday Completo">WhatsApp 💬</a>
+                                                            <button class="btn-menu-form" data-item="Combo Workday Completo">Formulario ✉️</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- MOCKUP 4: TURISMO & AVENTURA (Imágenes Grandes, Itinerarios Desplegables) -->
+                                <div class="mockup-view" id="mockup-view-turismo">
+                                    <!-- Hero Turismo -->
+                                    <div class="tourism-hero">
+                                        <div class="tourism-header">
+                                            <div class="tour-logo">🌋 La Fortuna<span>Adventures</span></div>
+                                            <div class="tour-lang">ES / EN</div>
+                                        </div>
+                                        <div class="tourism-hero-content">
+                                            <span class="tour-badge-top">Aventura & Naturaleza</span>
+                                            <h3>Explora los Rincones del Volcán</h3>
+                                            <p>Tours guiados por expertos locales con transporte y almuerzo incluidos.</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Sección de Tours y Acordeón de Itinerario -->
+                                    <div class="tours-section">
+                                        <h4>Nuestros Tours Destacados</h4>
+                                        <p class="section-desc-tour">Selecciona un tour para conocer sus detalles y cronograma del día.</p>
+                                        
+                                        <div class="tours-list">
+                                            <!-- Tour 1 -->
+                                            <div class="tour-accordion-item" id="tour-item-1">
+                                                <button class="tour-header-btn">
+                                                    <div class="tour-main-info">
+                                                        <span class="tour-emoji font-heading">🥾</span>
+                                                        <div>
+                                                            <h5>Caminata Senderos de Lava + Aguas Termales</h5>
+                                                            <span class="tour-meta">Duración: 6 horas | Dificultad: Media</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tour-price-action">
+                                                        <span class="t-price">$65<span>/pers</span></span>
+                                                        <span class="arrow-indicator">▼</span>
+                                                    </div>
+                                                </button>
+                                                <div class="tour-body-content">
+                                                    <div class="itinerary-timeline">
+                                                        <div class="timeline-step">
+                                                            <span class="step-time">08:00 AM</span>
+                                                            <p><strong>Recogida:</strong> Transporte directo desde tu hotel en La Fortuna.</p>
+                                                        </div>
+                                                        <div class="timeline-step">
+                                                            <span class="step-time">09:00 AM</span>
+                                                            <p><strong>Caminata:</strong> Sendero del flujo de lava de 1968, avistamiento de tucanes y monos.</p>
+                                                        </div>
+                                                        <div class="timeline-step">
+                                                            <span class="step-time">01:00 PM</span>
+                                                            <p><strong>Almuerzo:</strong> Comida típica costarricense estilo buffet en restaurante local.</p>
+                                                        </div>
+                                                        <div class="timeline-step">
+                                                            <span class="step-time">02:30 PM</span>
+                                                            <p><strong>Termales:</strong> Tarde libre para relajarse en piscinas naturales de aguas termales.</p>
+                                                        </div>
+                                                    </div>
+                                                    <a href="#contacto-form" class="btn-tour-book" data-tour="Caminata Lava + Termales">Reservar este Tour</a>
+                                                </div>
+                                            </div>
+
+                                            <!-- Tour 2 -->
+                                            <div class="tour-accordion-item" id="tour-item-2">
+                                                <button class="tour-header-btn">
+                                                    <div class="tour-main-info">
+                                                        <span class="tour-emoji font-heading">🚣</span>
+                                                        <div>
+                                                            <h5>Rafting en el Río Balsa (Clase II & III)</h5>
+                                                            <span class="tour-meta">Duración: 5 horas | Dificultad: Moderada</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tour-price-action">
+                                                        <span class="t-price">$75<span>/pers</span></span>
+                                                        <span class="arrow-indicator">▼</span>
+                                                    </div>
+                                                </button>
+                                                <div class="tour-body-content">
+                                                    <div class="itinerary-timeline">
+                                                        <div class="timeline-step">
+                                                            <span class="step-time">09:00 AM</span>
+                                                            <p><strong>Salida:</strong> Instrucciones de seguridad por guías certificados.</p>
+                                                        </div>
+                                                        <div class="timeline-step">
+                                                            <span class="step-time">10:00 AM</span>
+                                                            <p><strong>Rápidos:</strong> 2 horas de pura adrenalina esquivando rocas y olas en rápidos Clase III.</p>
+                                                        </div>
+                                                        <div class="timeline-step">
+                                                            <span class="step-time">01:00 PM</span>
+                                                            <p><strong>Almuerzo:</strong> Tradicional "casado" con frutas tropicales frente al río.</p>
+                                                        </div>
+                                                    </div>
+                                                    <a href="#contacto-form" class="btn-tour-book" data-tour="Rafting Río Balsa">Reservar este Tour</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                <!-- SECCIÓN: FORMULARIO DE CONTACTO TEMA OSCURO -->
+        <section class="section section-dark-contact" id="contacto-form">
+            <div class="container">
+                <div class="contact-wrapper">
+                    <!-- Info izquierda -->
+                    <div class="contact-info">
+                        <span class="section-subtitle">¿Conversamos?</span>
+                        <h2 class="section-title">Construyamos el Futuro Digital de tu PyME</h2>
+                        <p class="contact-desc">Déjanos tus datos o cuéntanos qué necesitas. Nos pondremos en contacto contigo en menos de 24 horas para asesorarte y detallar tu propuesta.</p>
+                        
+                        <div class="location-card">
+                            <span class="loc-icon">📍</span>
+                            <div>
+                                <h5>Ubicación</h5>
+                                <p>San Carlos, Alajuela, Costa Rica</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Formulario de contacto -->
+                    <div class="contact-form-container">
+                        <form id="sectors-contact-form" class="contact-form">
+                            <!-- Input oculto para registrar el sector actual -->
+                            <input type="hidden" id="form-selected-sector" name="selected_sector" value="retail">
+
+                            <div class="form-group">
+                                <input type="text" id="sectors-name" name="name" required placeholder=" ">
+                                <label for="sectors-name">Nombre completo</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" id="sectors-email" name="email" required placeholder=" ">
+                                <label for="sectors-email">Correo electrónico</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="tel" id="sectors-phone" name="phone" placeholder=" ">
+                                <label for="sectors-phone">Teléfono / WhatsApp</label>
+                            </div>
+                            <div class="form-group">
+                                <textarea id="sectors-message" name="message" required placeholder=" " rows="4">Hola Kenmar, estoy interesado en una página web para el sector Zapatería / Retail.</textarea>
+                                <label for="sectors-message">Detalles de tu proyecto</label>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-accent btn-submit btn-block">
+                                <span>Enviar Solicitud de Proyecto</span>
+                                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" x2="11" y1="2" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                            </button>
+                        </form>
+                        <div id="sectors-form-feedback" class="form-feedback hidden"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Oscuro Simplificado -->
+    <footer class="main-footer">
+        <div class="container footer-container">
+            <div class="footer-brand">
+                <a href="index.html" class="logo"><span class="logo-dot"></span>Kenmar</a>
+                <p>Diseño web minimalista y efectivo para potenciar pequeñas y medianas empresas en Costa Rica.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Sectores de San Carlos</h4>
+                <ul>
+                    <li><button class="footer-sector-link" data-sector="retail">Ropa & Zapatería / Retail</button></li>
+                    <li><button class="footer-sector-link" data-sector="agro">Agroinsumos / Sector Agrícola</button></li>
+                    <li><button class="footer-sector-link" data-sector="cafe">Café & Coworking</button></li>
+                    <li><button class="footer-sector-link" data-sector="turismo">Turismo & Aventura</button></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4>Contacto Directo</h4>
+                <p>informacion@kenmarcr.com</p>
+                <p>WhatsApp: +506 86737455</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2026 Kenmar. Todos los derechos reservados. Diseñado para el impacto local.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="sectores.js"></script>
+</body>
+</html>

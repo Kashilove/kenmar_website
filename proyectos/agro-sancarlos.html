@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caso de Estudio: Agro e Insumos | Kenmar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* Estilos específicos para la página de caso de estudio */
+        .case-header {
+            padding: 40px 0;
+            border-bottom: 1px solid var(--border-color);
+            background: var(--bg-secondary);
+        }
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+        .btn-back:hover {
+            color: var(--accent);
+        }
+        .case-title-area h1 {
+            font-size: 40px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+        }
+        .case-meta {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 16px;
+        }
+        .meta-tag {
+            background-color: var(--bg-alt);
+            padding: 4px 12px;
+            border-radius: var(--radius-sm);
+            font-size: 13px;
+            font-weight: 500;
+        }
+        .meta-tag.highlight {
+            background-color: var(--accent-light);
+            color: var(--accent);
+        }
+        
+        .case-content {
+            padding: 80px 0;
+        }
+        .case-intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+        .case-intro-grid h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+        .case-intro-grid p {
+            font-size: 16px;
+            margin-bottom: 20px;
+            color: var(--text-secondary);
+        }
+        
+        /* Estilos de la Demostración Interactiva */
+        .demo-section {
+            background-color: var(--bg-alt);
+            border-radius: var(--radius-lg);
+            padding: 60px 40px;
+            margin-top: 60px;
+            border: 1px solid var(--border-color);
+        }
+        .demo-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .demo-header h3 {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+        
+        /* Simulación del Sitio del Cliente */
+        .client-mock-container {
+            background: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+            font-family: var(--font-body);
+        }
+        .client-mock-bar {
+            background: #f1f5f9;
+            padding: 12px 20px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .client-mock-address {
+            background: #fff;
+            padding: 4px 16px;
+            border-radius: 4px;
+            font-size: 12px;
+            color: var(--text-muted);
+            border: 1px solid var(--border-color);
+            width: 50%;
+            text-align: center;
+        }
+        .client-mock-dots {
+            display: flex;
+            gap: 6px;
+        }
+        .client-mock-dots span {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #cbd5e1;
+        }
+        
+        /* Estilos del minisitio Agro */
+        .agro-site {
+            background: #fcfdfc;
+            color: #2b3a2f;
+            padding: 30px 24px;
+        }
+        .agro-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #e1e8e3;
+            padding-bottom: 16px;
+            margin-bottom: 30px;
+        }
+        .agro-logo {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            color: #1b5e20;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 18px;
+        }
+        .agro-search-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        .agro-search-input {
+            flex-grow: 1;
+            padding: 12px 16px;
+            border: 2px solid #cbdcd0;
+            border-radius: var(--radius-sm);
+            background: #fff;
+            font-size: 14px;
+            outline: none;
+            transition: var(--transition-fast);
+        }
+        .agro-search-input:focus {
+            border-color: #1b5e20;
+        }
+        .agro-search-btn {
+            background: #1b5e20;
+            color: #fff;
+            padding: 0 20px;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .agro-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .agro-item-card {
+            background: #fff;
+            border: 1px solid #e1e8e3;
+            border-radius: var(--radius-sm);
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition-fast);
+        }
+        .agro-item-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+            border-color: #a5d6a7;
+        }
+        .agro-item-tag {
+            font-size: 11px;
+            font-weight: 600;
+            background: #e8f5e9;
+            color: #2e7d32;
+            padding: 2px 8px;
+            border-radius: 4px;
+            align-self: flex-start;
+            margin-bottom: 10px;
+        }
+        .agro-item-card h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #1e2920;
+        }
+        .agro-item-card p {
+            font-size: 13px;
+            color: #556b5c;
+            margin-bottom: 16px;
+            flex-grow: 1;
+        }
+        .agro-item-btn {
+            background: #2e7d32;
+            color: #fff;
+            text-align: center;
+            padding: 8px;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-fast);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+        .agro-item-btn:hover {
+            background: #1b5e20;
+        }
+        .agro-item-btn svg {
+            width: 14px;
+            height: 14px;
+            fill: currentColor;
+        }
+        
+        .agro-no-results {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-muted);
+            grid-column: 1 / -1;
+            font-size: 15px;
+        }
+        
+        @media (max-width: 768px) {
+            .case-intro-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .demo-section {
+                padding: 30px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header simple de caso de estudio -->
+    <header class="case-header">
+        <div class="container">
+            <a href="../index.html" class="btn-back">&larr; Volver a Kenmar</a>
+            <div class="case-title-area">
+                <h1>Caso de Estudio: Agro e Insumos</h1>
+                <p class="hero-description">Plataforma digital interactiva para el sector ganadero y agropecuario de San Carlos.</p>
+                <div class="case-meta">
+                    <span class="meta-tag highlight">Diseño para el Agro</span>
+                    <span class="meta-tag">Catálogo Inteligente</span>
+                    <span class="meta-tag">Búsqueda Rápida</span>
+                    <span class="meta-tag">Integración WhatsApp</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="case-content">
+        <div class="container">
+            <div class="case-intro-grid">
+                <div>
+                    <h2>El Reto del Proyecto</h2>
+                    <p>Los almacenes agroveterinarios de San Carlos manejan un stock enorme de insumos agrícolas, fertilizantes y productos veterinarios. El flujo diario de productores locales requiere consultas de stock ágiles.</p>
+                    <p>El objetivo fue diseñar un sitio web ultra-veloz que sirva como catálogo interactivo, permitiendo a los agricultores buscar productos desde el campo y cotizar de manera directa por WhatsApp en segundos.</p>
+                </div>
+                <div>
+                    <h2>Nuestra Solución</h2>
+                    <p>Desarrollamos una interfaz minimalista con una potente barra de filtrado en tiempo real. La velocidad fue nuestra prioridad, permitiendo la carga instantánea incluso con baja cobertura de red en zonas rurales.</p>
+                    <p>Cada ficha de producto cuenta con un botón inteligente de cotización rápida que genera un enlace directo a WhatsApp con los datos del producto ya redactados.</p>
+                </div>
+            </div>
+
+            <!-- Demostración Interactiva -->
+            <div class="demo-section">
+                <div class="demo-header">
+                    <h3>Visualización Interactiva</h3>
+                    <p>Prueba el motor de búsqueda en tiempo real de esta propuesta interactiva.</p>
+                </div>
+
+                <div class="client-mock-container">
+                    <div class="client-mock-bar">
+                        <div class="client-mock-dots">
+                            <span></span><span></span><span></span>
+                        </div>
+                        <div class="client-mock-address">agrosancarlos-demo.com</div>
+                        <div style="width:24px;"></div>
+                    </div>
+                    <div class="agro-site">
+                        <div class="agro-nav">
+                            <div class="agro-logo">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                                AgroSanCarlos
+                            </div>
+                            <span style="font-size:12px; color:#556b5c; font-weight:500;">Ciudad Quesada, Costa Rica</span>
+                        </div>
+
+                        <!-- Barra de Búsqueda de Insumos -->
+                        <div class="agro-search-container">
+                            <input type="text" id="agro-search" class="agro-search-input" placeholder="Buscar herramientas, concentrados, veterinaria, insumos...">
+                            <button class="agro-search-btn" id="agro-search-btn">Buscar</button>
+                        </div>
+
+                        <!-- Lista de productos filtrables -->
+                        <div class="agro-grid" id="agro-products">
+                            <!-- Producto 1 -->
+                            <div class="agro-item-card" data-name="concentrado para ganado alimento vacas lechera" data-tag="Alimentos">
+                                <span class="agro-item-tag">Alimentos</span>
+                                <h4>Concentrado Lechera 18%</h4>
+                                <p>Alimento balanceado premium para vacas en producción de leche.</p>
+                                <a href="https://wa.me/50686737455?text=Hola,%20quisiera%20cotizar%20el%20Concentrado%20Lechera%2018%25" target="_blank" class="agro-item-btn">
+                                    <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.262 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.457L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.42 9.863-9.864.001-2.63-1.023-5.102-2.884-6.964C16.586 1.916 14.112.89 11.48.887c-5.438 0-9.863 4.42-9.866 9.865-.001 1.762.485 3.396 1.411 4.844L1.925 21.84l6.096-1.602c.001 0-.001 0 0 0zm11.393-7.464c-.3-.15-1.772-.875-2.046-.975-.276-.102-.476-.153-.676.152-.2.303-.777.976-.951 1.178-.176.203-.351.228-.651.077-1.42-.71-2.355-1.185-3.29-2.793-.248-.426.248-.396.71-.131.125.072.276.153.376.3.1.203.05.376-.025.528-.075.15-.676 1.63-.926 2.233-.243.585-.49.503-.676.495l-.576-.01c-.2 0-.526-.075-.8-.376-.275-.3-.1.725-.65-1.15-.35-1.002-.55-1.552-.55-2.28 0-.726.375-1.077.525-1.227.15-.15.4-.254.5-.254.1 0 .2.002.3.004.1.002.25-.038.375.253.125.3.425 1.053.475 1.15.05.102.075.203 0 .356-.075.152-.15.254-.225.356-.077.102-.153.203-.05.376.223.38.775 1.272 1.47 1.89.897.8 1.652 1.05 1.877 1.152.225.102.35.076.475-.076.125-.15.55-.634.7-.86.15-.226.3-.188.5-.112.2.076 1.27.6 1.495.71.225.113.375.166.425.254.05.088.05.502-.15 1.102z"/></svg>
+                                    Cotizar
+                                </a>
+                            </div>
+                            <!-- Producto 2 -->
+                            <div class="agro-item-card" data-name="abono organico fertilizante fincas tierra" data-tag="Insumos">
+                                <span class="agro-item-tag">Insumos</span>
+                                <h4>Fertilizante Nitrofoska</h4>
+                                <p>Saco de 45kg de abono de alta asimilación para pastos de corta y potreros.</p>
+                                <a href="https://wa.me/50686737455?text=Hola,%20quisiera%20cotizar%20el%20Fertilizante%20Nitrofoska" target="_blank" class="agro-item-btn">
+                                    <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.262 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.457L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.42 9.863-9.864.001-2.63-1.023-5.102-2.884-6.964C16.586 1.916 14.112.89 11.48.887c-5.438 0-9.863 4.42-9.866 9.865-.001 1.762.485 3.396 1.411 4.844L1.925 21.84l6.096-1.602c.001 0-.001 0 0 0zm11.393-7.464c-.3-.15-1.772-.875-2.046-.975-.276-.102-.476-.153-.676.152-.2.303-.777.976-.951 1.178-.176.203-.351.228-.651.077-1.42-.71-2.355-1.185-3.29-2.793-.248-.426.248-.396.71-.131.125.072.276.153.376.3.1.203.05.376-.025.528-.075.15-.676 1.63-.926 2.233-.243.585-.49.503-.676.495l-.576-.01c-.2 0-.526-.075-.8-.376-.275-.3-.1.725-.65-1.15-.35-1.002-.55-1.552-.55-2.28 0-.726.375-1.077.525-1.227.15-.15.4-.254.5-.254.1 0 .2.002.3.004.1.002.25-.038.375.253.125.3.425 1.053.475 1.15.05.102.075.203 0 .356-.075.152-.15.254-.225.356-.077.102-.153.203-.05.376.223.38.775 1.272 1.47 1.89.897.8 1.652 1.05 1.877 1.152.225.102.35.076.475-.076.125-.15.55-.634.7-.86.15-.226.3-.188.5-.112.2.076 1.27.6 1.495.71.225.113.375.166.425.254.05.088.05.502-.15 1.102z"/></svg>
+                                    Cotizar
+                                </a>
+                            </div>
+                            <!-- Producto 3 -->
+                            <div class="agro-item-card" data-name="vitamina veterinaria inyectable vacunas animales" data-tag="Veterinaria">
+                                <span class="agro-item-tag">Veterinaria</span>
+                                <h4>Vitamina Vigantol 50ml</h4>
+                                <p>Solución inyectable vitamínica de alta concentración para bovinos y porcinos.</p>
+                                <a href="https://wa.me/50686737455?text=Hola,%20quisiera%20cotizar%20la%20Vitamina%20Vigantol%2050ml" target="_blank" class="agro-item-btn">
+                                    <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.262 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.457L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.42 9.863-9.864.001-2.63-1.023-5.102-2.884-6.964C16.586 1.916 14.112.89 11.48.887c-5.438 0-9.863 4.42-9.866 9.865-.001 1.762.485 3.396 1.411 4.844L1.925 21.84l6.096-1.602c.001 0-.001 0 0 0zm11.393-7.464c-.3-.15-1.772-.875-2.046-.975-.276-.102-.476-.153-.676.152-.2.303-.777.976-.951 1.178-.176.203-.351.228-.651.077-1.42-.71-2.355-1.185-3.29-2.793-.248-.426.248-.396.71-.131.125.072.276.153.376.3.1.203.05.376-.025.528-.075.15-.676 1.63-.926 2.233-.243.585-.49.503-.676.495l-.576-.01c-.2 0-.526-.075-.8-.376-.275-.3-.1.725-.65-1.15-.35-1.002-.55-1.552-.55-2.28 0-.726.375-1.077.525-1.227.15-.15.4-.254.5-.254.1 0 .2.002.3.004.1.002.25-.038.375.253.125.3.425 1.053.475 1.15.05.102.075.203 0 .356-.075.152-.15.254-.225.356-.077.102-.153.203-.05.376.223.38.775 1.272 1.47 1.89.897.8 1.652 1.05 1.877 1.152.225.102.35.076.475-.076.125-.15.55-.634.7-.86.15-.226.3-.188.5-.112.2.076 1.27.6 1.495.71.225.113.375.166.425.254.05.088.05.502-.15 1.102z"/></svg>
+                                    Cotizar
+                                </a>
+                            </div>
+                            <!-- Producto 4 -->
+                            <div class="agro-item-card" data-name="pala herramienta machete campo agricultura" data-tag="Herramientas">
+                                <span class="agro-item-tag">Herramientas</span>
+                                <h4>Pala Carrilera Tramontina</h4>
+                                <p>Pala de acero templado ultra resistente con mango de madera ergonómico.</p>
+                                <a href="https://wa.me/50686737455?text=Hola,%20quisiera%20cotizar%20la%20Pala%20Carrilera%20Tramontina" target="_blank" class="agro-item-btn">
+                                    <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.262 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.457L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.42 9.863-9.864.001-2.63-1.023-5.102-2.884-6.964C16.586 1.916 14.112.89 11.48.887c-5.438 0-9.863 4.42-9.866 9.865-.001 1.762.485 3.396 1.411 4.844L1.925 21.84l6.096-1.602c.001 0-.001 0 0 0zm11.393-7.464c-.3-.15-1.772-.875-2.046-.975-.276-.102-.476-.153-.676.152-.2.303-.777.976-.951 1.178-.176.203-.351.228-.651.077-1.42-.71-2.355-1.185-3.29-2.793-.248-.426.248-.396.71-.131.125.072.276.153.376.3.1.203.05.376-.025.528-.075.15-.676 1.63-.926 2.233-.243.585-.49.503-.676.495l-.576-.01c-.2 0-.526-.075-.8-.376-.275-.3-.1.725-.65-1.15-.35-1.002-.55-1.552-.55-2.28 0-.726.375-1.077.525-1.227.15-.15.4-.254.5-.254.1 0 .2.002.3.004.1.002.25-.038.375.253.125.3.425 1.053.475 1.15.05.102.075.203 0 .356-.075.152-.15.254-.225.356-.077.102-.153.203-.05.376.223.38.775 1.272 1.47 1.89.897.8 1.652 1.05 1.877 1.152.225.102.35.076.475-.076.125-.15.55-.634.7-.86.15-.226.3-.188.5-.112.2.076 1.27.6 1.495.71.225.113.375.166.425.254.05.088.05.502-.15 1.102z"/></svg>
+                                    Cotizar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer simple -->
+    <footer class="main-footer" style="padding-top:40px;">
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2026 Kenmar. Todos los derechos reservados. Diseño y desarrollo minimalista.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Lógica interactiva del buscador del minisitio agro
+        const searchInput = document.getElementById('agro-search');
+        const searchBtn = document.getElementById('agro-search-btn');
+        const productsContainer = document.getElementById('agro-products');
+        const productCards = document.querySelectorAll('.agro-item-card');
+
+        const filterProducts = () => {
+            const query = searchInput.value.toLowerCase().trim();
+            let visibleCount = 0;
+            
+            // Eliminar mensaje previo de "sin resultados"
+            const existingNoResults = document.querySelector('.agro-no-results');
+            if (existingNoResults) existingNoResults.remove();
+
+            productCards.forEach(card => {
+                const name = card.getAttribute('data-name').toLowerCase();
+                const title = card.querySelector('h4').textContent.toLowerCase();
+                
+                if (name.includes(query) || title.includes(query)) {
+                    card.style.display = 'flex';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            if (visibleCount === 0) {
+                const noResults = document.createElement('div');
+                noResults.className = 'agro-no-results';
+                noResults.innerHTML = `No se encontraron productos para "<strong>${searchInput.value}</strong>".<br><span style="font-size:13px; color:var(--text-muted);">Prueba con 'alimento', 'saco', 'herramientas' o 'inyectable'.</span>`;
+                productsContainer.appendChild(noResults);
+            }
+        };
+
+        searchInput.addEventListener('input', filterProducts);
+        searchBtn.addEventListener('click', filterProducts);
+    </script>
+</body>
+</html>

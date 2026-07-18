@@ -151,11 +151,9 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(type, 1000);
     }
 
-    // 6. Efecto de Inclinación 3D (Tilt) y Parallax en el Hero Visual
+    // 6. Efecto de Inclinación 3D (Tilt) y Zoom Interactivo en la Maqueta del Hero
     const heroVisual = document.getElementById('hero-visual');
     const browserMockup = document.getElementById('browser-mockup');
-    const badgeSpeed = document.getElementById('badge-speed');
-    const badgeSeo = document.getElementById('badge-seo');
     
     if (heroVisual && browserMockup) {
         heroVisual.addEventListener('mousemove', (e) => {
@@ -165,27 +163,102 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const centerX = rect.width / 2;
             const centerY = rect.height / 2;
-            const rotateX = ((centerY - y) / centerY) * 10;
-            const rotateY = ((x - centerX) / centerX) * 10;
+            const rotateX = ((centerY - y) / centerY) * 14;
+            const rotateY = ((x - centerX) / centerX) * 14;
             
-            browserMockup.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
-            
-            if (badgeSpeed) {
-                badgeSpeed.style.transform = `translate(${(centerX - x) * 0.04}px, ${(centerY - y) * 0.04}px)`;
-            }
-            if (badgeSeo) {
-                badgeSeo.style.transform = `translate(${(centerX - x) * -0.04}px, ${(centerY - y) * -0.04}px)`;
-            }
+            browserMockup.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.06) translateZ(15px)`;
         });
         
         heroVisual.addEventListener('mouseleave', () => {
-            browserMockup.style.transform = 'rotateX(0deg) rotateY(0deg) translateZ(0)';
-            if (badgeSpeed) {
-                badgeSpeed.style.transform = '';
-            }
-            if (badgeSeo) {
-                badgeSeo.style.transform = '';
-            }
+            browserMockup.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1) translateZ(0)';
         });
     }
+
+    // 7. Widget Interactivo "Sobre Nosotros / Quiénes Somos"
+    const aboutTabs = document.querySelectorAll('.about-tab-btn');
+    const screenContents = document.querySelectorAll('.about-screen-content');
+    
+    // Configuración Test de Carga con 3 Barras Blancas
+    const speedBtn = document.getElementById('run-speed-test');
+    
+    function runSpeedTest() {
+        const fill1 = document.getElementById('speed-fill-1');
+        const fill2 = document.getElementById('speed-fill-2');
+        const fill3 = document.getElementById('speed-fill-3');
+        const val1 = document.getElementById('bar-val-1');
+        const val2 = document.getElementById('bar-val-2');
+        const val3 = document.getElementById('bar-val-3');
+
+        if (!fill1 || !fill2 || !fill3) return;
+
+        // Reset state
+        [fill1, fill2, fill3].forEach(fill => {
+            fill.style.transition = 'none';
+            fill.style.width = '0%';
+        });
+        if (val1) val1.textContent = 'Cargando...';
+        if (val2) val2.textContent = 'Cargando...';
+        if (val3) val3.textContent = 'Cargando...';
+
+        setTimeout(() => {
+            fill1.style.transition = 'width 0.4s cubic-bezier(0.16, 1, 0.3, 1)';
+            fill1.style.width = '100%';
+            if (val1) val1.textContent = '0.1s — 100% Instantáneo';
+
+            setTimeout(() => {
+                fill2.style.transition = 'width 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
+                fill2.style.width = '100%';
+                if (val2) val2.textContent = '0.2s — 100% Optimizado';
+
+                setTimeout(() => {
+                    fill3.style.transition = 'width 0.4s cubic-bezier(0.16, 1, 0.3, 1)';
+                    fill3.style.width = '100%';
+                    if (val3) val3.textContent = '0.1s — Carga Ultra Rápida';
+                }, 120);
+            }, 120);
+        }, 50);
+    }
+    
+    if (speedBtn) {
+        speedBtn.addEventListener('click', runSpeedTest);
+    }
+    
+    // Configuración Simulador Responsive
+    const testerBtns = document.querySelectorAll('.tester-btn');
+    const testerViewport = document.getElementById('tester-viewport');
+    
+    testerBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            testerBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            const widthMode = btn.getAttribute('data-width');
+            testerViewport.className = `tester-viewport ${widthMode}`;
+        });
+    });
+    
+    // Manejo de clicks en pestañas del Widget
+    aboutTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            aboutTabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            
+            const activeTabName = tab.getAttribute('data-tab');
+            
+            // Switch screen content
+            screenContents.forEach(content => {
+                const contentId = content.getAttribute('id');
+                if (contentId === `screen-${activeTabName}`) {
+                    content.style.display = 'flex';
+                } else {
+                    content.style.display = 'none';
+                }
+            });
+            
+            // Trigger specific actions when switching tab
+            if (activeTabName === 'velocidad') {
+                runSpeedTest();
+            }
+        });
+    });
 });

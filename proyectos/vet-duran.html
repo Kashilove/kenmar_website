@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caso de Estudio: Veterinaria | Kenmar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* Estilos específicos para la página de caso de estudio */
+        .case-header {
+            padding: 40px 0;
+            border-bottom: 1px solid var(--border-color);
+            background: var(--bg-secondary);
+        }
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+        .btn-back:hover {
+            color: var(--accent);
+        }
+        .case-title-area h1 {
+            font-size: 40px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+        }
+        .case-meta {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 16px;
+        }
+        .meta-tag {
+            background-color: var(--bg-alt);
+            padding: 4px 12px;
+            border-radius: var(--radius-sm);
+            font-size: 13px;
+            font-weight: 500;
+        }
+        .meta-tag.highlight {
+            background-color: var(--accent-light);
+            color: var(--accent);
+        }
+        
+        .case-content {
+            padding: 80px 0;
+        }
+        .case-intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+        .case-intro-grid h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+        .case-intro-grid p {
+            font-size: 16px;
+            margin-bottom: 20px;
+            color: var(--text-secondary);
+        }
+        
+        /* Estilos de la Demostración Interactiva */
+        .demo-section {
+            background-color: var(--bg-alt);
+            border-radius: var(--radius-lg);
+            padding: 60px 40px;
+            margin-top: 60px;
+            border: 1px solid var(--border-color);
+        }
+        .demo-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .demo-header h3 {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+        
+        /* Simulación del Sitio del Cliente */
+        .client-mock-container {
+            background: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+            font-family: var(--font-body);
+        }
+        .client-mock-bar {
+            background: #f1f5f9;
+            padding: 12px 20px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .client-mock-address {
+            background: #fff;
+            padding: 4px 16px;
+            border-radius: 4px;
+            font-size: 12px;
+            color: var(--text-muted);
+            border: 1px solid var(--border-color);
+            width: 50%;
+            text-align: center;
+        }
+        .client-mock-dots {
+            display: flex;
+            gap: 6px;
+        }
+        .client-mock-dots span {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #cbd5e1;
+        }
+        
+        /* Estilos de la simulación de Veterinaria */
+        .vet-site {
+            background: #fbfdfc;
+            color: #2b3531;
+            padding: 30px 24px;
+        }
+        .vet-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #e2ece8;
+            padding-bottom: 16px;
+            margin-bottom: 30px;
+        }
+        .vet-logo {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            color: #0d9488;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 18px;
+        }
+        .vet-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: start;
+        }
+        .vet-services-column h4 {
+            font-size: 18px;
+            margin-bottom: 16px;
+            color: #0f172a;
+        }
+        .vet-service-item {
+            background: #fff;
+            border: 1px solid #e2ece8;
+            border-radius: var(--radius-sm);
+            padding: 14px;
+            display: flex;
+            gap: 12px;
+            margin-bottom: 12px;
+            transition: var(--transition-fast);
+        }
+        .vet-service-item:hover {
+            border-color: #0d9488;
+            box-shadow: var(--shadow-sm);
+        }
+        .vet-service-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #f0fdfa;
+            color: #0d9488;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        .vet-service-desc h5 {
+            font-size: 14px;
+            margin-bottom: 2px;
+            font-weight: 600;
+            color: #1e293b;
+        }
+        .vet-service-desc p {
+            font-size: 12px;
+            color: #64748b;
+        }
+        
+        /* Formulario de citas */
+        .vet-booking-box {
+            background: #fff;
+            border: 1px solid #e2ece8;
+            border-radius: var(--radius-sm);
+            padding: 24px;
+            box-shadow: var(--shadow-sm);
+        }
+        .vet-booking-box h4 {
+            font-size: 18px;
+            margin-bottom: 12px;
+            color: #0f172a;
+        }
+        .vet-booking-box p {
+            font-size: 13px;
+            color: #64748b;
+            margin-bottom: 16px;
+        }
+        .vet-form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .vet-form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        .vet-input, .vet-select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 4px;
+            font-size: 13px;
+            outline: none;
+            background: #f8fafc;
+            transition: var(--transition-fast);
+        }
+        .vet-input:focus, .vet-select:focus {
+            border-color: #0d9488;
+            background: #fff;
+            box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.08);
+        }
+        .vet-submit-btn {
+            background: #0d9488;
+            color: #fff;
+            text-align: center;
+            padding: 12px;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: var(--transition-fast);
+        }
+        .vet-submit-btn:hover {
+            background: #0f766e;
+        }
+        
+        .vet-success-msg {
+            background: #f0fdfa;
+            border: 1px solid #99f6e4;
+            color: #0f766e;
+            padding: 16px;
+            border-radius: 6px;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 500;
+        }
+        
+        @media (max-width: 768px) {
+            .case-intro-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .vet-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .demo-section {
+                padding: 30px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header simple de caso de estudio -->
+    <header class="case-header">
+        <div class="container">
+            <a href="../index.html" class="btn-back">&larr; Volver a Kenmar</a>
+            <div class="case-title-area">
+                <h1>Caso de Estudio: Veterinaria</h1>
+                <p class="hero-description">Sitio web profesional de servicios de salud animal y agendamiento de citas en Barrio San Antonio.</p>
+                <div class="case-meta">
+                    <span class="meta-tag highlight">Diseño Clínico</span>
+                    <span class="meta-tag">Reservas en Línea</span>
+                    <span class="meta-tag">Estética Limpia</span>
+                    <span class="meta-tag">Fidelización de Clientes</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="case-content">
+        <div class="container">
+            <div class="case-intro-grid">
+                <div>
+                    <h2>El Reto del Proyecto</h2>
+                    <p>Las veterinarias modernas requieren transmitir máxima confianza y profesionalidad. Para la clínica Veterinaria, el desafío principal era automatizar la recepción de citas y reducir las llamadas constantes por dudas de horario o servicios.</p>
+                    <p>El cliente necesitaba que el sitio funcionara como un canal directo de reservas que liberara tiempo administrativo, a la vez que diera a conocer la calidad de sus servicios especializados.</p>
+                </div>
+                <div>
+                    <h2>Nuestra Solución</h2>
+                    <p>Diseñamos una interfaz en tonos verdes/turquesas muy suaves, que transmiten calma y limpieza. Integramos un módulo interactivo de reservas rápido y autogestionable por los dueños de mascotas.</p>
+                    <p>El sistema recopila los datos principales de la mascota y del servicio seleccionado, enviando de inmediato una confirmación por WhatsApp/correo con la agenda establecida.</p>
+                </div>
+            </div>
+
+            <!-- Demostración Interactiva -->
+            <div class="demo-section">
+                <div class="demo-header">
+                    <h3>Módulo de Reservas de Citas</h3>
+                    <p>Prueba a agendar una cita simulada para tu mascota en la interfaz interactiva.</p>
+                </div>
+
+                <div class="client-mock-container">
+                    <div class="client-mock-bar">
+                        <div class="client-mock-dots">
+                            <span></span><span></span><span></span>
+                        </div>
+                        <div class="client-mock-address">veterinaria-demo.com</div>
+                        <div style="width:24px;"></div>
+                    </div>
+                    <div class="vet-site">
+                        <div class="vet-nav">
+                            <div class="vet-logo">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                                Veterinaria San Carlos
+                            </div>
+                            <span style="font-size:12px; color:#52645f; font-weight:500;">San Antonio, Ciudad Quesada</span>
+                        </div>
+
+                        <div class="vet-grid">
+                            <!-- Columna Servicios -->
+                            <div class="vet-services-column">
+                                <h4>Nuestros Servicios Clínicos</h4>
+                                <div class="vet-service-item">
+                                    <div class="vet-service-icon">🩺</div>
+                                    <div class="vet-service-desc">
+                                        <h5>Consulta General</h5>
+                                        <p>Evaluación médica completa y control de vacunas.</p>
+                                    </div>
+                                </div>
+                                <div class="vet-service-item">
+                                    <div class="vet-service-icon">✂️</div>
+                                    <div class="vet-service-desc">
+                                        <h5>Estética & Peluquería</h5>
+                                        <p>Baño medicado, corte de pelo y limpieza dental básica.</p>
+                                    </div>
+                                </div>
+                                <div class="vet-service-item">
+                                    <div class="vet-service-icon">🔬</div>
+                                    <div class="vet-service-desc">
+                                        <h5>Cirugía y Exámenes</h5>
+                                        <p>Laboratorio clínico y quirófano veterinario certificado.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Formulario interactivo de reserva -->
+                            <div class="vet-booking-box">
+                                <h4>Reserva una cita</h4>
+                                <p>Elige el horario conveniente para ti y tu mascota.</p>
+                                
+                                <form id="vet-booking-form" class="vet-form">
+                                    <div class="vet-form-row">
+                                        <input type="text" id="vet-owner-name" class="vet-input" placeholder="Tu Nombre" required>
+                                        <input type="text" id="vet-pet-name" class="vet-input" placeholder="Nombre de Mascota" required>
+                                    </div>
+                                    <div class="vet-form-row">
+                                        <select id="vet-service-type" class="vet-select" required>
+                                            <option value="" disabled selected>Tipo de Servicio</option>
+                                            <option value="Consulta Médica">Consulta Médica</option>
+                                            <option value="Peluquería Canina">Estética y Peluquería</option>
+                                            <option value="Vacunación">Vacunación</option>
+                                            <option value="Cirugía/Especialidad">Cirugía/Especialidad</option>
+                                        </select>
+                                        <select id="vet-pet-type" class="vet-select" required>
+                                            <option value="" disabled selected>Especie</option>
+                                            <option value="Perro">Perro</option>
+                                            <option value="Gato">Gato</option>
+                                            <option value="Otro">Otro</option>
+                                        </select>
+                                    </div>
+                                    <div class="vet-form-row">
+                                        <input type="date" id="vet-date" class="vet-input" required>
+                                        <select id="vet-time" class="vet-select" required>
+                                            <option value="" disabled selected>Hora</option>
+                                            <option value="08:00 AM">08:00 AM</option>
+                                            <option value="10:00 AM">10:00 AM</option>
+                                            <option value="02:00 PM">02:00 PM</option>
+                                            <option value="04:00 PM">04:00 PM</option>
+                                        </select>
+                                    </div>
+                                    <button type="submit" class="vet-submit-btn">Agendar Cita</button>
+                                </form>
+                                <div id="vet-success-box" class="vet-success-msg hidden"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer simple -->
+    <footer class="main-footer" style="padding-top:40px;">
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2026 Kenmar. Todos los derechos reservados. Diseño y desarrollo minimalista.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Lógica interactiva del agendamiento de citas
+        const bookingForm = document.getElementById('vet-booking-form');
+        const successBox = document.getElementById('vet-success-box');
+
+        if (bookingForm) {
+            bookingForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                const ownerName = document.getElementById('vet-owner-name').value.trim();
+                const petName = document.getElementById('vet-pet-name').value.trim();
+                const service = document.getElementById('vet-service-type').value;
+                const petType = document.getElementById('vet-pet-type').value;
+                const date = document.getElementById('vet-date').value;
+                const time = document.getElementById('vet-time').value;
+
+                // Ocultar formulario temporalmente y mostrar mensaje
+                bookingForm.classList.add('hidden');
+                successBox.classList.remove('hidden');
+                
+                // Redactar mensaje de éxito
+                successBox.innerHTML = `
+                    <div style="font-size:24px; margin-bottom:8px;">✅</div>
+                    <strong>¡Cita Solicitada con Éxito!</strong><br>
+                    Hola <strong>${ownerName}</strong>, hemos reservado un espacio para <strong>${petName}</strong> (${petType}) para el servicio de <strong>${service}</strong> el día <strong>${date}</strong> a las <strong>${time}</strong>.<br>
+                    <button id="vet-reset-btn" style="margin-top:14px; background:#0d9488; color:#fff; padding:6px 12px; border-radius:4px; font-size:11px; cursor:pointer; font-weight:600;">Agendar Otra Cita</button>
+                `;
+
+                // Agregar listener al botón de reiniciar
+                document.getElementById('vet-reset-btn').addEventListener('click', () => {
+                    successBox.classList.add('hidden');
+                    bookingForm.classList.remove('hidden');
+                    bookingForm.reset();
+                });
+            });
+        }
+    </script>
+</body>
+</html>
