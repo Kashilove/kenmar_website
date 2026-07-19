@@ -45,25 +45,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const footerButtons = document.querySelectorAll('.footer-sector-link');
     const infoPanels = document.querySelectorAll('.sector-info-panel');
     const mockupViews = document.querySelectorAll('.mockup-view');
-    const browserUrl = document.getElementById('mockup-url');
     
     const hiddenSectorInput = document.getElementById('form-selected-sector');
     const contactMessage = document.getElementById('sectors-message');
 
-    // URLs simuladas para el navegador de cada sector
-    const sectorUrls = {
-        retail: 'ropaycalzadosancarlos.com',
-        agro: 'agrosancarlos.cr',
-        cafe: 'cafequesadacowork.com',
-        turismo: 'arenaladventuretours.com'
-    };
-
     // Mensajes predeterminados del formulario para cada sector
     const sectorMessages = {
-        retail: 'Hola Kenmar, estoy interesado en una página web para el sector Ropa & Zapatería / Retail con catálogo interactivo.',
-        agro: 'Hola Kenmar, me gustaría cotizar un sitio web corporativo para mi distribuidora de Agroinsumos / Sector Agrícola.',
-        cafe: 'Hola Kenmar, estoy interesado en diseñar un sitio web moderno con menú digital y sistema de reservas para Café / Coworking.',
-        turismo: 'Hola Kenmar, me interesa cotizar una página web interactiva para mi agencia de Turismo & Aventura en la zona norte.'
+        turismo: 'Hola Kenmar, estoy interesado en una página web para el sector Turismo & Hospedaje.',
+        cafe: 'Hola Kenmar, estoy interesado en una página web para el sector Café & Coworking.',
+        agro: 'Hola Kenmar, estoy interesado en una página web para el sector Agro & Ganadería.',
+        retail: 'Hola Kenmar, estoy interesado en una página web para el sector Ropa & Zapatería.'
     };
 
     function changeSector(sectorId) {
@@ -75,11 +66,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 btn.classList.remove('active');
             }
         });
-
-        // Actualizar URL del mockup
-        if (browserUrl) {
-            browserUrl.textContent = sectorUrls[sectorId];
-        }
 
         // Intercambiar paneles de información
         infoPanels.forEach(panel => {
@@ -131,138 +117,81 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ----------------------------------------------------
     // 3. Interacciones Mockup 1: ROPA & ZAPATERÍA / RETAIL
-    // ----------------------------------------------------
-    // Función para actualizar dinámicamente el enlace de WhatsApp de cada producto
-    function updateProductWaLink(card) {
-        const waBtn = card.querySelector('.btn-product-wa');
-        if (!waBtn) return;
-        
-        const itemName = waBtn.getAttribute('data-item');
-        
-        // Obtener color seleccionado
-        const activeColorDot = card.querySelector('.color-dot.active');
-        let colorName = 'Predeterminado';
-        if (activeColorDot) {
-            const colorHex = activeColorDot.getAttribute('data-color');
-            if (colorHex === '#1e3a8a') colorName = 'Azul Marino';
-            else if (colorHex === '#1c1917') colorName = 'Negro';
-            else if (colorHex === '#3f6212') colorName = 'Verde Oliva';
-            else if (colorHex === '#5c4033') colorName = 'Café';
-            else if (colorHex === '#a0522d') colorName = 'Sienna';
-        }
-        
-        // Obtener talla seleccionada
-        const sizeSelect = card.querySelector('.size-select');
-        const selectedSize = sizeSelect ? sizeSelect.value : 'Talla única';
-        
-        const textMessage = `Hola Kenmar, estoy consultando disponibilidad desde su portafolio interactivo de Ropa & Zapatería:%0A%0A` +
-            `- *Producto:* ${itemName}%0A` +
-            `- *Color:* ${colorName}%0A` +
-            `- *Talla:* ${selectedSize}%0A%0A` +
-            `¿Me podrían indicar si lo tienen disponible y cómo sería el proceso de cotización?`;
-            
-        waBtn.setAttribute('href', `https://wa.me/50686737455?text=${textMessage}`);
+    // ==========================================
+    // VÍA MODA - LÓGICA DE CATEGORÍAS, FILTROS Y VARIANTES
+    // ==========================================
+    const viamodaCatBtns = document.querySelectorAll('.viamoda-cat-btn');
+    const viamodaSubfilterBtns = document.querySelectorAll('.viamoda-subfilter-btn');
+    const viamodaCards = document.querySelectorAll('.viamoda-card');
+    const btnViamodaConsults = document.querySelectorAll('.btn-viamoda-consult');
+
+    let currentViamodaCat = 'prendas';
+    let currentViamodaTone = 'all';
+
+    function filterViamodaCatalog() {
+        viamodaCards.forEach(card => {
+            const cardCat = card.getAttribute('data-cat');
+            const cardTone = card.getAttribute('data-tone');
+
+            const matchCat = cardCat === currentViamodaCat;
+            const matchTone = currentViamodaTone === 'all' || cardTone === currentViamodaTone;
+
+            if (matchCat && matchTone) {
+                card.classList.remove('hidden');
+            } else {
+                card.classList.add('hidden');
+            }
+        });
     }
 
-    // Inicializar links y eventos de color / talla
-    const shopCards = document.querySelectorAll('.shop-card');
-    shopCards.forEach(card => {
-        // Inicializar el link de WhatsApp
-        updateProductWaLink(card);
-
-        // Evento para cambios de color
-        const dots = card.querySelectorAll('.color-dot');
-        dots.forEach(dot => {
-            dot.addEventListener('click', (e) => {
-                const color = e.target.getAttribute('data-color');
-                
-                dots.forEach(d => d.classList.remove('active'));
-                e.target.classList.add('active');
-
-                // Cambiar el color del calzado (SVG) si existe
-                const shoePath = card.querySelector('.shoe-color-path');
-                if (shoePath) {
-                    shoePath.style.fill = color;
-                }
-
-                // Cambiar el color de la chaqueta (SVG) si existe
-                const clothingPaths = card.querySelectorAll('.clothing-color-path, .clothing-color-path-collar');
-                clothingPaths.forEach(path => {
-                    path.style.fill = color;
-                });
-
-                // Actualizar enlace de WhatsApp
-                updateProductWaLink(card);
-            });
-        });
-
-        // Evento para cambios de talla
-        const sizeSelect = card.querySelector('.size-select');
-        if (sizeSelect) {
-            sizeSelect.addEventListener('change', () => {
-                updateProductWaLink(card);
-            });
-        }
-    });
-
-    // Enviar a Formulario desde el catálogo de Ropa/Calzado
-    const btnProductForms = document.querySelectorAll('.btn-product-form');
-    btnProductForms.forEach(btn => {
+    // Cambio de Pestaña Principal (Prendas de Vestir vs. Calzado)
+    viamodaCatBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
-            const card = e.target.closest('.shop-card');
-            const itemName = e.target.getAttribute('data-item');
-            
-            // Obtener color
-            const activeColorDot = card.querySelector('.color-dot.active');
-            let colorName = 'Predeterminado';
-            if (activeColorDot) {
-                const colorHex = activeColorDot.getAttribute('data-color');
-                if (colorHex === '#1e3a8a') colorName = 'Azul Marino';
-                else if (colorHex === '#1c1917') colorName = 'Negro';
-                else if (colorHex === '#3f6212') colorName = 'Verde Oliva';
-                else if (colorHex === '#5c4033') colorName = 'Café';
-                else if (colorHex === '#a0522d') colorName = 'Sienna';
-            }
-            
-            // Obtener talla
-            const sizeSelect = card.querySelector('.size-select');
-            const selectedSize = sizeSelect ? sizeSelect.value : 'Talla única';
-            
-            // Forzar vista de Retail
-            changeSector('retail');
-            
-            // Scroll a Formulario
-            const formSection = document.getElementById('contacto-form');
-            if (formSection) {
-                formSection.scrollIntoView({ behavior: 'smooth' });
-            }
-            
-            // Pre-llenar mensaje
-            if (contactMessage) {
-                contactMessage.value = `Hola Kenmar, estoy interesado en cotizar y consultar disponibilidad de este producto:\n- Producto: ${itemName}\n- Color: ${colorName}\n- Talla: ${selectedSize}\n\nPor favor, asesórenme sobre las opciones y plazos de entrega.`;
-            }
-        });
-    });
-
-    // Filtros de Ropa vs Calzado en el mockup de retail
-    const shopFilterBtns = document.querySelectorAll('.shop-filter-btn');
-    const shopCardsList = document.querySelectorAll('.shop-product-grid .shop-card');
-    
-    shopFilterBtns.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            shopFilterBtns.forEach(b => b.classList.remove('active'));
+            viamodaCatBtns.forEach(b => b.classList.remove('active'));
             e.target.classList.add('active');
-            
-            const filterVal = e.target.getAttribute('data-filter');
-            
-            shopCardsList.forEach(card => {
-                const cardCat = card.getAttribute('data-category');
-                if (filterVal === 'all' || cardCat === filterVal) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
+
+            currentViamodaCat = e.target.getAttribute('data-viamoda-cat');
+            filterViamodaCatalog();
+        });
+    });
+
+    // Filtros Rápidos Interactivos (Tonos Neutros, Salmón, Todos)
+    viamodaSubfilterBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            viamodaSubfilterBtns.forEach(b => b.classList.remove('active'));
+            e.target.classList.add('active');
+
+            currentViamodaTone = e.target.getAttribute('data-filter');
+            filterViamodaCatalog();
+        });
+    });
+
+    // Variantes de Color (Interactivas en las Fichas)
+    viamodaCards.forEach(card => {
+        const swatches = card.querySelectorAll('.swatch');
+        swatches.forEach(swatch => {
+            swatch.addEventListener('click', (e) => {
+                swatches.forEach(s => s.classList.remove('active'));
+                e.target.classList.add('active');
+                
+                // Animación sutil de cambio de variante
+                const img = card.querySelector('.card-img');
+                if (img) {
+                    img.style.opacity = '0.7';
+                    setTimeout(() => {
+                        img.style.opacity = '1';
+                    }, 200);
                 }
             });
+        });
+    });
+
+    // Botón Consultar por WhatsApp
+    btnViamodaConsults.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const itemInfo = e.target.getAttribute('data-item');
+            const textMessage = `Hola Vía Moda, me interesa consultar por la prenda/calzado: "%2A${itemInfo}%2A". ¿Me podrían brindar tallas disponibles y formas de compra?`;
+            window.open(`https://wa.me/50686737455?text=${textMessage}`, '_blank');
         });
     });
 
@@ -416,101 +345,249 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ----------------------------------------------------
-    // 6. Interacciones Mockup 4: TURISMO & AVENTURA
+    // 6. Interacciones Mockup 4: TURISMO & HOSPEDAJE (Eco-Lodge & Villas)
     // ----------------------------------------------------
-    const tourAccordionHeaders = document.querySelectorAll('.tour-header-btn');
-    
-    tourAccordionHeaders.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            const item = e.currentTarget.closest('.tour-accordion-item');
-            const isOpen = item.classList.contains('open');
-            
-            // Cerrar todos los acordeones
-            document.querySelectorAll('.tour-accordion-item').forEach(i => i.classList.remove('open'));
-            
-            // Si no estaba abierto, abrir este
-            if (!isOpen) {
-                item.classList.add('open');
-            }
-        });
-    });
+    const resortModal = document.getElementById('resort-modal');
+    const btnViewVillas = document.getElementById('btn-view-villas');
+    const btnTabReserve = document.getElementById('btn-tab-reserve');
+    const btnNavStay = document.getElementById('btn-nav-stay');
+    const btnCloseResortModal = document.getElementById('btn-close-resort-modal');
+    const microNavBtns = document.querySelectorAll('.micro-nav-btn');
+    const villaTabPanes = document.querySelectorAll('.villa-tab-pane');
 
-    // Botones Reservar Tour
-    const bookTourBtns = document.querySelectorAll('.btn-tour-book');
-    bookTourBtns.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            const tourName = e.target.getAttribute('data-tour');
-
-            changeSector('turismo');
-
-            const formSection = document.getElementById('contacto-form');
-            if (formSection) {
-                formSection.scrollIntoView({ behavior: 'smooth' });
-            }
-
-            if (contactMessage) {
-                contactMessage.value = `Hola Kenmar, estoy interesado en cotizar un sitio web para mi empresa de turismo y me gusta el diseño adaptado para tours como: "${tourName}".`;
-            }
-        });
-    });
-
-    // ----------------------------------------------------
-    // 8. Validación y Envío del Formulario en Tema Oscuro
-    // ----------------------------------------------------
-    const sectorsContactForm = document.getElementById('sectors-contact-form');
-    const sectorsFormFeedback = document.getElementById('sectors-form-feedback');
-
-    if (sectorsContactForm) {
-        sectorsContactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-
-            const nameInput = document.getElementById('sectors-name');
-            const emailInput = document.getElementById('sectors-email');
-            const messageInput = document.getElementById('sectors-message');
-            const submitBtn = sectorsContactForm.querySelector('.btn-submit');
-            const submitBtnText = submitBtn.querySelector('span');
-
-            // Validación simple
-            if (!nameInput.value.trim() || !emailInput.value.trim() || !messageInput.value.trim()) {
-                showSectorsFeedback('Por favor, rellena todos los campos obligatorios.', 'error');
-                return;
-            }
-
-            // Simulación de envío
-            submitBtn.disabled = true;
-            const originalText = submitBtnText.textContent;
-            submitBtnText.textContent = 'Enviando solicitud...';
-
+    // Función para abrir la Mini-Página Modal
+    function openResortModal() {
+        if (resortModal) {
+            resortModal.style.display = 'flex';
             setTimeout(() => {
-                submitBtn.disabled = false;
-                submitBtnText.textContent = originalText;
-                
-                showSectorsFeedback('¡Solicitud enviada! Nos pondremos en contacto contigo en las próximas horas.', 'success');
-                
-                // Reiniciar formulario
-                sectorsContactForm.reset();
-                
-                // Poner mensaje inicial para el sector activo
-                const activeBtn = document.querySelector('.nav-sector-btn.active');
-                const sectorId = activeBtn ? activeBtn.getAttribute('data-sector') : 'retail';
-                if (contactMessage) {
-                    contactMessage.value = sectorMessages[sectorId];
+                resortModal.classList.add('active');
+            }, 10);
+        }
+    }
+
+    // Función para cerrar la Mini-Página Modal
+    function closeResortModal() {
+        if (resortModal) {
+            resortModal.classList.remove('active');
+            setTimeout(() => {
+                resortModal.style.display = 'none';
+            }, 300);
+        }
+    }
+
+    // Eventos para abrir el modal
+    if (btnViewVillas) btnViewVillas.addEventListener('click', openResortModal);
+    if (btnTabReserve) btnTabReserve.addEventListener('click', openResortModal);
+    if (btnNavStay) btnNavStay.addEventListener('click', openResortModal);
+
+    // Buscador interactivo amigable
+    const resortSearchInput = document.getElementById('resort-search-input');
+    if (resortSearchInput) {
+        resortSearchInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                const query = resortSearchInput.value.trim();
+                if (query) {
+                    const textMessage = `Hola Kenmar, me interesa cotizar una página web interactiva para mi resort/hotel y probé la búsqueda con la palabra: "%2A${query}%2A".`;
+                    window.open(`https://wa.me/50686737455?text=${textMessage}`, '_blank');
+                } else {
+                    openResortModal();
                 }
-            }, 1500);
+            }
         });
     }
 
-    function showSectorsFeedback(message, type) {
-        if (!sectorsFormFeedback) return;
-        
-        sectorsFormFeedback.textContent = message;
-        sectorsFormFeedback.className = `form-feedback ${type}`; // Elimina 'hidden' y aplica clase success/error
-        
-        if (type === 'success') {
+    // Eventos para cerrar el modal
+    if (btnCloseResortModal) btnCloseResortModal.addEventListener('click', closeResortModal);
+    if (resortModal) {
+        resortModal.addEventListener('click', (e) => {
+            if (e.target === resortModal) {
+                closeResortModal();
+            }
+        });
+    }
+
+    // Micro-Navegación de pestañas dentro de la Mini-Página Modal
+    microNavBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            microNavBtns.forEach(b => b.classList.remove('active'));
+            e.target.classList.add('active');
+
+            const selectedTab = e.target.getAttribute('data-villa-tab');
+
+            villaTabPanes.forEach(pane => {
+                if (pane.getAttribute('id') === `villa-tab-${selectedTab}`) {
+                    pane.classList.add('active');
+                } else {
+                    pane.classList.remove('active');
+                }
+            });
+        });
+    });
+
+    // Configuración de botones WhatsApp de Villas
+    const villaWaBtns = document.querySelectorAll('.btn-villa-wa');
+    villaWaBtns.forEach(btn => {
+        const villaInfo = btn.getAttribute('data-villa');
+        const textMessage = `Hola Exotica Eco-Lodge, me interesa consultar la disponibilidad y reservar la categoría: "%2A${villaInfo}%2A".`;
+        btn.setAttribute('href', `https://wa.me/50686737455?text=${textMessage}`);
+        btn.setAttribute('target', '_blank');
+        btn.setAttribute('rel', 'noopener noreferrer');
+    });
+
+    // Configuración de botones de Consulta de Villas por WhatsApp
+    const villaFormBtns = document.querySelectorAll('.btn-villa-form');
+    villaFormBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const villaInfo = e.target.getAttribute('data-villa');
+            const textMessage = `Hola Kenmar, me interesa cotizar un sitio web interactivo como el demo de Exotica Eco-Lodge para mi hotel/resort. Me gustó la villa: "%2A${villaInfo}%2A".`;
+            window.open(`https://wa.me/50686737455?text=${textMessage}`, '_blank');
+        });
+    });
+
+    // Módulo de Disponibilidad del Modal
+    const btnSubmitResortAvail = document.getElementById('btn-submit-resort-avail');
+    if (btnSubmitResortAvail) {
+        btnSubmitResortAvail.addEventListener('click', () => {
+            const checkin = document.getElementById('resort-checkin').value;
+            const checkout = document.getElementById('resort-checkout').value;
+            const villaSelect = document.getElementById('resort-villa-select').value;
+            const textMessage = `Hola Kenmar, deseo cotizar una página web para mi resort con motor de reservas instantáneo. Mi prueba de reserva en el demo fue: Check-in ${checkin}, Check-out ${checkout}, Villa: "%2A${villaSelect}%2A".`;
+            window.open(`https://wa.me/50686737455?text=${textMessage}`, '_blank');
+        });
+    }
+
+    // ==========================================
+    // ALMOREA CAFÉ - LÓGICA DE MENÚ Y CATEGORÍAS
+    // ==========================================
+    const btnOpenAlmoreaMenu = document.getElementById('btn-open-almorea-menu');
+    const btnCloseAlmoreaModal = document.getElementById('btn-close-almorea-modal');
+    const almoreaMenuModal = document.getElementById('almorea-menu-modal');
+    const almoreaCatBtns = document.querySelectorAll('.almorea-cat-btn');
+    const almoreaDishCards = document.querySelectorAll('.almorea-dish-card');
+
+    function openAlmoreaModal() {
+        if (almoreaMenuModal) {
+            almoreaMenuModal.style.display = 'flex';
             setTimeout(() => {
-                sectorsFormFeedback.className = 'form-feedback hidden';
-            }, 6000);
+                almoreaMenuModal.classList.add('active');
+            }, 10);
         }
+    }
+
+    function closeAlmoreaModal() {
+        if (almoreaMenuModal) {
+            almoreaMenuModal.classList.remove('active');
+            setTimeout(() => {
+                almoreaMenuModal.style.display = 'none';
+            }, 300);
+        }
+    }
+
+    if (btnOpenAlmoreaMenu) btnOpenAlmoreaMenu.addEventListener('click', openAlmoreaModal);
+    if (btnCloseAlmoreaModal) btnCloseAlmoreaModal.addEventListener('click', closeAlmoreaModal);
+    if (almoreaMenuModal) {
+        almoreaMenuModal.addEventListener('click', (e) => {
+            if (e.target === almoreaMenuModal) {
+                closeAlmoreaModal();
+            }
+        });
+    }
+
+    // Filtrado por categorías de Almorea Café
+    almoreaCatBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            almoreaCatBtns.forEach(b => b.classList.remove('active'));
+            e.target.classList.add('active');
+
+            const category = e.target.getAttribute('data-cafe-cat');
+
+            almoreaDishCards.forEach(card => {
+                if (card.getAttribute('data-cat') === category) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        });
+    });
+
+    // ===============================================
+    // AGROSANCARLOS - LÓGICA DE MENÚ TRANSPARENTE Y FILTRADO INLINE
+    // ===============================================
+    const agroNavItems = document.querySelectorAll('.agro-nav-item');
+    const agroFilterBtns = document.querySelectorAll('.agro-filter-btn');
+    const agroInlineCards = document.querySelectorAll('.agro-inline-card');
+    const btnAgroInlineQuotes = document.querySelectorAll('.btn-agro-inline-quote');
+    const btnAgroDirectQuote = document.getElementById('btn-agro-direct-quote');
+
+    function filterAgroCards(category) {
+        agroInlineCards.forEach(card => {
+            if (category === 'all' || category === 'todos' || card.getAttribute('data-cat') === category) {
+                card.classList.remove('hidden');
+            } else {
+                card.classList.add('hidden');
+            }
+        });
+    }
+
+    // Eventos del Menú Transparente Superior
+    agroNavItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+            if (e.target.id === 'btn-agro-direct-quote') return; // CTA button handled separately
+            agroNavItems.forEach(i => i.classList.remove('active'));
+            e.target.classList.add('active');
+
+            const tab = e.target.getAttribute('data-agro-tab');
+            
+            // Sync with filter buttons
+            agroFilterBtns.forEach(btn => {
+                if (btn.getAttribute('data-filter') === tab || (tab === 'todos' && btn.getAttribute('data-filter') === 'all')) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+
+            filterAgroCards(tab);
+        });
+    });
+
+    // Eventos de los Botones de Filtro Inline
+    agroFilterBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            agroFilterBtns.forEach(b => b.classList.remove('active'));
+            e.target.classList.add('active');
+
+            const filter = e.target.getAttribute('data-filter');
+
+            // Sync with top nav
+            agroNavItems.forEach(nav => {
+                if (nav.getAttribute('data-agro-tab') === filter || (filter === 'all' && nav.getAttribute('data-agro-tab') === 'todos')) {
+                    nav.classList.add('active');
+                } else {
+                    nav.classList.remove('active');
+                }
+            });
+
+            filterAgroCards(filter);
+        });
+    });
+
+    // Cotización Directa desde cada Tarjeta Inline
+    btnAgroInlineQuotes.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const product = e.target.getAttribute('data-product');
+            const textMessage = `Hola AgroInsumos, me interesa cotizar el insumo agrícola: "%2A${product}%2A". ¿Me podrían brindar disponibilidad y precio para finca?`;
+            window.open(`https://wa.me/50686737455?text=${textMessage}`, '_blank');
+        });
+    });
+
+    // Botón de Cotización Directa en el Menú Superior
+    if (btnAgroDirectQuote) {
+        btnAgroDirectQuote.addEventListener('click', () => {
+            const textMessage = `Hola AgroInsumos, deseo cotizar insumos agrícolas y recibir asesoría técnica para mi finca.`;
+            window.open(`https://wa.me/50686737455?text=${textMessage}`, '_blank');
+        });
     }
 });
