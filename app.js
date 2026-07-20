@@ -117,8 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
             try {
                 // Envío mediante FormSubmit AJAX endpoint
                 const formData = new FormData(contactForm);
-                // Si aún no se ha reemplazado con el correo oficial, usamos el endpoint de recepción
-                const targetEmail = 'info@kenmar.com'; // Puede reemplazarse con el correo final deseado
+                const targetEmail = 'informacion@kenmarcr.com';
                 const response = await fetch(`https://formsubmit.co/ajax/${targetEmail}`, {
                     method: 'POST',
                     headers: {
