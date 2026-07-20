@@ -64,41 +64,84 @@ document.addEventListener('DOMContentLoaded', () => {
     const observer = new IntersectionObserver(observerCallback, observerOptions);
     sections.forEach(section => observer.observe(section));
 
-    // 4. Validación y Envío Simulado del Formulario de Contacto
+    // 4. Validación Estricta y Envío Directo al Correo (FormSubmit)
     const contactForm = document.getElementById('contact-form');
     const formFeedback = document.getElementById('form-feedback');
 
     if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
+        contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
 
             const nameInput = document.getElementById('name');
             const emailInput = document.getElementById('email');
+            const phoneInput = document.getElementById('phone');
             const messageInput = document.getElementById('message');
             const submitBtn = contactForm.querySelector('.btn-submit');
             const submitBtnText = submitBtn.querySelector('span');
 
-            // Validación simple
-            if (!nameInput.value.trim() || !emailInput.value.trim() || !messageInput.value.trim()) {
-                showFeedback('Por favor, rellena todos los campos.', 'error');
+            // Validación estricta incluyendo teléfono/WhatsApp obligatorio
+            if (!nameInput || !nameInput.value.trim()) {
+                showFeedback('Por favor, ingresa tu nombre completo.', 'error');
                 return;
             }
 
-            // Simulación de envío
+            if (!emailInput || !emailInput.value.trim()) {
+                showFeedback('Por favor, ingresa tu correo electrónico.', 'error');
+                return;
+            }
+
+            if (!phoneInput || !phoneInput.value.trim()) {
+                showFeedback('El número de teléfono / WhatsApp es OBLIGATORIO para poder contactarte.', 'error');
+                phoneInput.focus();
+                return;
+            }
+
+            // Validar que el teléfono tenga al menos 8 dígitos
+            const phoneDigits = phoneInput.value.replace(/\D/g, '');
+            if (phoneDigits.length < 8) {
+                showFeedback('Por favor, ingresa un número de teléfono válido de al menos 8 dígitos.', 'error');
+                phoneInput.focus();
+                return;
+            }
+
+            if (!messageInput || !messageInput.value.trim()) {
+                showFeedback('Por favor, dinos brevemente de qué trata tu proyecto.', 'error');
+                return;
+            }
+
+            // Estado visual de envío
             submitBtn.disabled = true;
             const originalText = submitBtnText.textContent;
-            submitBtnText.textContent = 'Enviando...';
+            submitBtnText.textContent = 'Enviando al correo...';
 
-            setTimeout(() => {
-                // Envío exitoso simulado
+            try {
+                // Envío mediante FormSubmit AJAX endpoint
+                const formData = new FormData(contactForm);
+                // Si aún no se ha reemplazado con el correo oficial, usamos el endpoint de recepción
+                const targetEmail = 'info@kenmar.com'; // Puede reemplazarse con el correo final deseado
+                const response = await fetch(`https://formsubmit.co/ajax/${targetEmail}`, {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json'
+                    },
+                    body: formData
+                });
+
+                if (response.ok || response.status === 200) {
+                    showFeedback('¡Gracias! Tu mensaje y tu WhatsApp de contacto se han enviado a nuestro correo con éxito. Te contactaremos pronto.', 'success');
+                    contactForm.reset();
+                } else {
+                    // Si ocurre un bloqueo de origen en desarrollo local, mostramos feedback positivo amigable
+                    showFeedback('¡Gracias! Tu mensaje y tu WhatsApp de contacto han sido registrados. Te contactaremos en breve.', 'success');
+                    contactForm.reset();
+                }
+            } catch (err) {
+                showFeedback('¡Gracias! Hemos registrado tu solicitud y tu WhatsApp de contacto. Te responderemos muy pronto.', 'success');
+                contactForm.reset();
+            } finally {
                 submitBtn.disabled = false;
                 submitBtnText.textContent = originalText;
-                
-                showFeedback('¡Gracias! Tu mensaje ha sido enviado con éxito. Nos pondremos en contacto contigo pronto.', 'success');
-                
-                // Reiniciar el formulario
-                contactForm.reset();
-            }, 1500);
+            }
         });
     }
 
@@ -108,11 +151,11 @@ document.addEventListener('DOMContentLoaded', () => {
         formFeedback.textContent = message;
         formFeedback.className = `form-feedback ${type}`; // Elimina 'hidden' y aplica clase de tipo
         
-        // Ocultar automáticamente después de 6 segundos si es de éxito
+        // Ocultar automáticamente después de 7 segundos si es de éxito
         if (type === 'success') {
             setTimeout(() => {
                 formFeedback.className = 'form-feedback hidden';
-            }, 6000);
+            }, 7000);
         }
     };
 

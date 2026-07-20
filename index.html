@@ -343,20 +343,29 @@
                     <!-- Formulario de Contacto -->
                     <div class="contact-form-container">
                         <form id="contact-form" class="contact-form">
+                            <!-- Configuración para envío directo a Correo (FormSubmit) -->
+                            <input type="hidden" name="_subject" value="Nuevo Proyecto Solicitado - Kenmar Web">
+                            <input type="hidden" name="_template" value="table">
+                            <input type="hidden" name="_captcha" value="false">
+
                             <div class="form-group">
                                 <input type="text" id="name" name="name" required placeholder=" ">
-                                <label for="name">Nombre</label>
+                                <label for="name">Nombre completo</label>
                             </div>
                             <div class="form-group">
                                 <input type="email" id="email" name="email" required placeholder=" ">
-                                <label for="email">Correo Electrónico</label>
+                                <label for="email">Correo electrónico</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="tel" id="phone" name="phone" required placeholder=" " pattern="[0-9+\s\-]{8,15}">
+                                <label for="phone">Teléfono / WhatsApp (Obligatorio)</label>
                             </div>
                             <div class="form-group">
                                 <textarea id="message" name="message" required placeholder=" " rows="4"></textarea>
                                 <label for="message">Cuéntanos sobre tu proyecto</label>
                             </div>
                             <button type="submit" class="btn btn-primary btn-submit">
-                                <span>Enviar Mensaje</span>
+                                <span>Enviar Mensaje al Correo</span>
                                 <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" x2="11" y1="2" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
                             </button>
                         </form>
