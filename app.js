@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
             try {
                 // Envío mediante FormSubmit AJAX endpoint
                 const formData = new FormData(contactForm);
-                const targetEmail = 'informacion@kenmarcr.com';
+                const targetEmail = '847ca14617861b9f643750df8e67dea3';
                 const response = await fetch(`https://formsubmit.co/ajax/${targetEmail}`, {
                     method: 'POST',
                     headers: {
