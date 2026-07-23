@@ -261,6 +261,19 @@ ul {
     display: inline-block;
 }
 
+.logo-img {
+    height: 30px;
+    width: auto;
+    display: block;
+    object-fit: contain;
+    transition: var(--transition-smooth);
+}
+
+.logo:hover .logo-img {
+    transform: rotate(-6deg) scale(1.1);
+    filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.6));
+}
+
 .nav-list {
     display: flex;
     align-items: center;
@@ -347,7 +360,7 @@ ul {
 .burger-bar {
     width: 100%;
     height: 2px;
-    background-color: var(--text-primary);
+    background-color: #ffffff;
     border-radius: 2px;
     transition: var(--transition-smooth);
 }
