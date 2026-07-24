@@ -115,16 +115,26 @@ body.dark-theme .main-header.scrolled {
 }
 
 .return-btn {
-    border: 1px solid var(--border-dark);
-    padding: 8px 16px;
-    border-radius: var(--radius-full);
-    font-size: 14px;
-    background-color: rgba(255, 255, 255, 0.02);
+    background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 50%, #0284c7 100%) !important;
+    border: 1.5px solid rgba(56, 189, 248, 0.7) !important;
+    color: #ffffff !important;
+    padding: 8px 20px !important;
+    border-radius: var(--radius-full) !important;
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.03em;
+    display: inline-flex !important;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4), 0 0 10px rgba(56, 189, 248, 0.2);
+    transition: var(--transition-smooth) !important;
 }
 
 .return-btn:hover {
-    border-color: var(--text-dark-secondary);
-    background-color: rgba(255, 255, 255, 0.05);
+    background: linear-gradient(135deg, #2563eb 0%, #0284c7 50%, #38bdf8 100%) !important;
+    border-color: #38bdf8 !important;
+    box-shadow: 0 6px 20px rgba(56, 189, 248, 0.6), 0 0 15px rgba(37, 99, 235, 0.3) !important;
+    transform: translateY(-2px) scale(1.05) !important;
+    color: #ffffff !important;
 }
 
 /* Sección Hero Showcase */

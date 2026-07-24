@@ -1,4 +1,4 @@
-/* Lógica Interactiva del Portafolio por Sectores de San Carlos */
+﻿/* Lógica Interactiva del Portafolio por Sectores de San Carlos */
 
 document.addEventListener('DOMContentLoaded', () => {
     
@@ -21,12 +21,20 @@ document.addEventListener('DOMContentLoaded', () => {
     // ----------------------------------------------------
     const navToggle = document.getElementById('nav-toggle');
     const navMenu = document.getElementById('nav-menu');
+    const navClose = document.getElementById('nav-close');
     
     if (navToggle && navMenu) {
         navToggle.addEventListener('click', () => {
             navToggle.classList.toggle('open');
             navMenu.classList.toggle('open');
         });
+
+        if (navClose) {
+            navClose.addEventListener('click', () => {
+                navToggle.classList.remove('open');
+                navMenu.classList.remove('open');
+            });
+        }
         
         // Cerrar menú al hacer clic en enlaces o botones del sector
         const menuItems = navMenu.querySelectorAll('a, button');
@@ -191,7 +199,7 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.addEventListener('click', (e) => {
             const itemInfo = e.target.getAttribute('data-item');
             const textMessage = `Hola Vía Moda, me interesa consultar por la prenda/calzado: "%2A${itemInfo}%2A". ¿Me podrían brindar tallas disponibles y formas de compra?`;
-            window.open(`https://wa.me/50686737455?text=${textMessage}`, '_blank');
+            window.open(`https://wa.me/50670322191?text=${textMessage}`, '_blank');
         });
     });
 
@@ -293,7 +301,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Configurar WhatsApp
         if (waBtn) {
             const textMessage = `Hola KAFË & Coworking, estoy interesado en consultar la disponibilidad, capacidad y tarifas de su espacio "%2A${spotName}%2A" para trabajar de forma remota o realizar una actividad.`;
-            waBtn.setAttribute('href', `https://wa.me/50686737455?text=${textMessage}`);
+            waBtn.setAttribute('href', `https://wa.me/50670322191?text=${textMessage}`);
         }
 
         // Configurar Formulario
@@ -324,7 +332,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Configurar WhatsApp
         if (waBtn) {
             const textMessage = `Hola KAFË & Coworking, me gustaría consultar la disponibilidad del producto o paquete: "%2A${itemName}%2A" (Precio: ${itemPrice}) en su menú.`;
-            waBtn.setAttribute('href', `https://wa.me/50686737455?text=${textMessage}`);
+            waBtn.setAttribute('href', `https://wa.me/50670322191?text=${textMessage}`);
         }
 
         // Configurar Formulario
@@ -389,7 +397,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const query = resortSearchInput.value.trim();
                 if (query) {
                     const textMessage = `Hola Kenmar, me interesa cotizar una página web interactiva para mi resort/hotel y probé la búsqueda con la palabra: "%2A${query}%2A".`;
-                    window.open(`https://wa.me/50686737455?text=${textMessage}`, '_blank');
+                    window.open(`https://wa.me/50670322191?text=${textMessage}`, '_blank');
                 } else {
                     openResortModal();
                 }
@@ -430,7 +438,7 @@ document.addEventListener('DOMContentLoaded', () => {
     villaWaBtns.forEach(btn => {
         const villaInfo = btn.getAttribute('data-villa');
         const textMessage = `Hola Exotica Eco-Lodge, me interesa consultar la disponibilidad y reservar la categoría: "%2A${villaInfo}%2A".`;
-        btn.setAttribute('href', `https://wa.me/50686737455?text=${textMessage}`);
+        btn.setAttribute('href', `https://wa.me/50670322191?text=${textMessage}`);
         btn.setAttribute('target', '_blank');
         btn.setAttribute('rel', 'noopener noreferrer');
     });
@@ -441,7 +449,7 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.addEventListener('click', (e) => {
             const villaInfo = e.target.getAttribute('data-villa');
             const textMessage = `Hola Kenmar, me interesa cotizar un sitio web interactivo como el demo de Exotica Eco-Lodge para mi hotel/resort. Me gustó la villa: "%2A${villaInfo}%2A".`;
-            window.open(`https://wa.me/50686737455?text=${textMessage}`, '_blank');
+            window.open(`https://wa.me/50670322191?text=${textMessage}`, '_blank');
         });
     });
 
@@ -453,7 +461,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const checkout = document.getElementById('resort-checkout').value;
             const villaSelect = document.getElementById('resort-villa-select').value;
             const textMessage = `Hola Kenmar, deseo cotizar una página web para mi resort con motor de reservas instantáneo. Mi prueba de reserva en el demo fue: Check-in ${checkin}, Check-out ${checkout}, Villa: "%2A${villaSelect}%2A".`;
-            window.open(`https://wa.me/50686737455?text=${textMessage}`, '_blank');
+            window.open(`https://wa.me/50670322191?text=${textMessage}`, '_blank');
         });
     }
 
@@ -579,7 +587,7 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.addEventListener('click', (e) => {
             const product = e.target.getAttribute('data-product');
             const textMessage = `Hola AgroInsumos, me interesa cotizar el insumo agrícola: "%2A${product}%2A". ¿Me podrían brindar disponibilidad y precio para finca?`;
-            window.open(`https://wa.me/50686737455?text=${textMessage}`, '_blank');
+            window.open(`https://wa.me/50670322191?text=${textMessage}`, '_blank');
         });
     });
 
@@ -587,7 +595,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (btnAgroDirectQuote) {
         btnAgroDirectQuote.addEventListener('click', () => {
             const textMessage = `Hola AgroInsumos, deseo cotizar insumos agrícolas y recibir asesoría técnica para mi finca.`;
-            window.open(`https://wa.me/50686737455?text=${textMessage}`, '_blank');
+            window.open(`https://wa.me/50670322191?text=${textMessage}`, '_blank');
         });
     }
 });

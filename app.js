@@ -21,12 +21,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const navToggle = document.getElementById('nav-toggle');
     const navMenu = document.getElementById('nav-menu');
     const navLinks = document.querySelectorAll('.nav-link');
+    const navClose = document.getElementById('nav-close');
 
     if (navToggle && navMenu) {
         navToggle.addEventListener('click', () => {
             navToggle.classList.toggle('open');
             navMenu.classList.toggle('open');
         });
+
+        if (navClose) {
+            navClose.addEventListener('click', () => {
+                navToggle.classList.remove('open');
+                navMenu.classList.remove('open');
+            });
+        }
 
         // Cerrar menú al hacer clic en cualquier enlace
         navLinks.forEach(link => {

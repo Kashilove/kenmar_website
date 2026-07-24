@@ -365,9 +365,38 @@ ul {
     transition: var(--transition-smooth);
 }
 
+.nav-close {
+    display: none;
+}
+
 @media (max-width: 768px) {
+    .nav-close {
+        display: block;
+        position: absolute;
+        top: 24px;
+        right: 24px;
+        background: transparent;
+        border: none;
+        font-size: 32px;
+        color: #0f172a;
+        cursor: pointer;
+        line-height: 1;
+        padding: 4px 8px;
+        z-index: 1002;
+        transition: var(--transition-fast);
+    }
+    
+    .nav-close:hover {
+        color: #1d4ed8;
+        transform: scale(1.1);
+    }
+
     .nav-toggle {
         display: flex;
+    }
+    
+    .nav-toggle.open {
+        display: none !important;
     }
     
     .nav-menu {
@@ -395,6 +424,7 @@ ul {
     
     .nav-link {
         font-size: 18px;
+        color: #0f172a !important;
     }
     
     .nav-btn {
